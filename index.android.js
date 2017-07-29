@@ -10,10 +10,19 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  TouchableOpacity,
+  TextInput
 } from 'react-native';
 
 export default class THEBALLYANDTHETRASH extends Component {
+    constructor(props) {
+    super(props);
+    this.state = { text: 'Find my item ...',
+                  
+  };
+    
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -22,33 +31,110 @@ export default class THEBALLYANDTHETRASH extends Component {
        {/* start language bar */}
           <View style={styles.languageBar}>
               <View style={styles.language} >
-                <Button title="EN" /> 
+                <Button color='#15e498' title="EN"  /> 
               </View>
                 <View style={styles.language1} >
-                  <Button title="TH" /> 
+                  <Button color='#253f3b' title="TH" style={styles.button2} /> 
                 </View>
           </View>
         {/* End language bar */}
 
         {/* start title bar */}
         <View style={styles.title}>
-          <Text > CMU GREEN BIN </Text>
+          <Text style={styles.header} >CMU   
+           <Text style={{ fontStyle : 'italic',color:'#15e498'}} > GREEN</Text>  BIN</Text>
           </View>
           {/* End title bar */}
 
 
+           {/* start graph bar */}
+           
+             <View style={styles.title1}>
+          <Text style={styles.header1}> BIN STATISTICS </Text>
+          </View>
            <View style={styles.graphContainer}>
-          <Text > CMU GREEN BIN </Text>
+           <Text > graph</Text>
           </View>
+
+            {/* End graph bar */}
+
+             {/* Start binselect bar */}
           <View style={styles.binContainer}>
-          <Text > CMU GREEN BIN </Text>
+           <View style={styles.select} >
+                <Button color='#15e498' title=" 1 " /> 
+              </View>
+              <View style={styles.select} >
+                <Button color='#253f3b' title=" 2 " /> 
+              </View>
+              <View style={styles.select} >
+                <Button color='#253f3b' title=" 3 " /> 
+              </View>
+              <View style={styles.select} >
+                <Button color='#253f3b' title=" 4 " /> 
+              </View>
+              <View style={styles.select} >
+                <Button color='#253f3b' title=" 5 " /> 
+              </View>
           </View>
+           {/* end binselect bar */}
+
+            {/* start statLeft bar */}
           <View style={styles.statContainer}>
-          <Text > CMU GREEN BIN </Text>
+            <View style={styles.statTopL}>
+              <View style={styles.statFirst}>
+             <Text > 1 </Text>
           </View>
+          <View style={styles.statSecond}>
+             <Text style={{fontWeight:'bold',color:'black'}}> COKE CAN </Text>
+          </View>
+          </View>
+           {/* end statLeft bar */}
+
+
+
+           {/* start statRight bar */}
+          <View style={styles.statTopR}>
+            <View style={styles.statThree}>
+            <TouchableOpacity style={{backgroundColor:'#1fbba6',marginTop:6,marginRight:6,padding:6,borderRadius:6}}>
+             <Text style={{color:'#ffffff'}}>How to Recycle</Text>
+            </TouchableOpacity>
+             </View>
+             <View style={styles.statFour}>
+                  <Text style={{color:'#a2a2a2',marginLeft:11,marginTop:10,fontSize:15,fontWeight:'bold'}} > Statistics </Text>
+             </View>
+             <View style={styles.statFive}>
+               <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end',marginLeft:20}}><Text style={{color:'black'}} > 10 </Text></View>
+                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end'}}><Text style={{color:'black'}} > 365 </Text></View>
+                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end'}}><Text style={{color:'black'}} > 374 </Text></View>
+         
+             </View>
+             <View style={styles.statSix}>
+                     <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start',marginLeft:20}}><Text> By You </Text></View>
+                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start'}}><Text> By Others </Text></View>
+                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start'}}><Text> In Total </Text></View>
+             </View>
+          </View>
+          </View>
+           {/* end statRight bar */}
+
+                <View style={styles.searchContainer}>
+            <View style={styles.searchIcon}>
+           <Text > icon </Text>
+          </View>
+          <View style={styles.searchItem}>
+          <TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1,color:'#FFFF'}}
+        onChangeText={(text) => this.setState({text})}
+        value={this.state.text}
+      />
+          </View>
+          </View>
+
           <View style={styles.footerContainer}>
 
-          <Button title="Recycle item" /> 
+            <TouchableOpacity style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}}>
+             <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>RECYCLE ITEM</Text>
+            </TouchableOpacity>
           </View>
 
 
@@ -58,62 +144,172 @@ export default class THEBALLYANDTHETRASH extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+container: {
     flex: 1,
     backgroundColor: '#338378',
-  }, languageBar: {
-flexDirection:'row',
-flex:1,
-  },language:{
+}, 
+languageBar: {
+    flexDirection:'row',
+    flex:1,
+},
+language:{
     flex:1,
     alignItems: 'flex-end',
     borderRadius:20,
     margin:5,
-  },language1:{
+  },
+language1:{
     borderRadius:20,
     margin:5,
-  },title:{
-  flexDirection:'row',
-  justifyContent: 'center',
-  flex:1,
-  }, graphContainer: {
+  },
+  select:{
+    
+    alignItems: 'center',
+    borderRadius:10,
+    margin:5,
+  },
+title:{
+    flexDirection:'row',
+    justifyContent: 'center',
+    flex:1,
+    marginLeft : 30,
+  marginRight : 30,
+  }, 
+title1:{
+    flexDirection:'row',
+    justifyContent: 'center',
+    backgroundColor : '#1fbba6',
+    flex:0.7,
+    marginLeft : 30,
+  marginRight : 30,
+  borderTopRightRadius:6,
+   borderTopLeftRadius:6
+  }, 
+graphContainer: {
     flex:4,
-backgroundColor: 'white',
-justifyContent: 'center',
-flexDirection:'row',
-marginTop : 10,
-marginLeft : 30,
-marginRight : 30,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    flexDirection:'row',
+    marginLeft : 30,
+    marginRight : 30,
+    borderBottomLeftRadius:6,
+    borderBottomRightRadius:6,
   },
 binContainer: {
     flex:1,
-backgroundColor: '#338378',
-justifyContent: 'center',
-flexDirection:'row',
-marginTop : 10,
-marginLeft : 30,
-marginRight : 30,
+    backgroundColor: '#338378',
+    justifyContent: 'center',
+    flexDirection:'row',
+    marginTop : 10,
+    marginLeft : 30,
+    marginRight : 30,
   },
 statContainer: {
     flex:3,
-backgroundColor: 'white',
-justifyContent: 'center',
-flexDirection:'row',
-marginTop : 10,
-marginLeft : 30,
-marginRight : 30,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    flexDirection:'row',
+    marginTop : 10,
+    marginLeft : 30,
+    marginRight : 30,
+   borderTopLeftRadius:6,
+   borderTopRightRadius:6
+  },
+statTopL: {
+      flex:2,
+      
+  },
+statFirst: {
+      flex:3,
+       backgroundColor: 'blue',
+       borderTopLeftRadius:6,
+  },
+statSecond: {
+      flex:1,
+       backgroundColor: 'white',
+       alignItems: 'center',
+
+       
+  },
+statTopR: {
+      flex:5,
+      
+  },
+statThree: {
+      flex:1,
+       backgroundColor: '#f2f2f2',
+        alignItems: 'flex-end',
+           borderTopRightRadius:6,
+           
+
+  },
+statFour: {
+      flex:1,
+       backgroundColor: '#f2f2f2',
+       borderBottomWidth:1,
+       borderBottomColor: '#ccc'
+        
+  },
+statFive: {
+      flex:0.8,
+       backgroundColor: '#ffffff',
+       flexDirection:'row',
+       
+    justifyContent: 'center',
+       
+  },statSix: {
+      flex:1.2,
+       backgroundColor: '#ffffff',
+       flexDirection:'row',
+  },
+searchContainer: {
+    flex:0.7,
+ 
+    justifyContent: 'center',
+    flexDirection:'row',
+    marginLeft : 30,
+    marginRight : 30,
+    borderBottomLeftRadius:6,
+    borderBottomRightRadius:6
+  },
+  searchIcon:{
+      flex:1,
+      backgroundColor:'#161c1a',
+      borderBottomLeftRadius:6,
+  },
+searchItem:{
+      flex:8,
+      borderBottomRightRadius:6,
+      backgroundColor: '#253f3b'
   },
 footerContainer: {
     flex:1,
-backgroundColor: '#1fbba6',
-justifyContent: 'center',
-flexDirection:'row',
-marginTop : 10,
-marginLeft : 30,
-marginRight : 30,
-marginBottom : 20,
-  }
+    backgroundColor: '#6eeedc',
+    justifyContent: 'center',
+    flexDirection:'row',
+    marginTop : 10,
+    marginLeft : 30,
+    marginRight : 30,
+    marginBottom : 20,
+    borderRadius:6
+  },
+
+header:{
+      fontFamily: 'verdana',
+     
+   fontSize: 35,
+    fontWeight: '900',
+    color : 'white',
+},
+  header1:{
+      fontFamily: 'verdana',
+    fontSize:22  ,
+    fontWeight: '900',
+    color : 'white',
+}
+  
   
 });
 
-AppRegistry.registerComponent('THEBALLYANDTHETRASH', () => THEBALLYANDTHETRASH);
+
+AppRegistry.registerComponent('theballyandthetrash', () => THEBALLYANDTHETRASH);

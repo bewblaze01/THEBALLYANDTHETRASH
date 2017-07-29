@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-export default class THEBALLYANDTHETRASH extends Component {
+export default class theballyandthetrash extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('THEBALLYANDTHETRASH', () => THEBALLYANDTHETRASH);
+AppRegistry.registerComponent('theballyandthetrash', () => theballyandthetrash);

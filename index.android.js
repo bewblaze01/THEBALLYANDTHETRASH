@@ -17,12 +17,24 @@ export default class THEBALLYANDTHETRASH extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View >
-            <Button title="TH" /> 
+
+
+       {/* start language bar */}
+          <View style={styles.languageBar}>
+              <View style={styles.language} >
+                <Button title="EN" /> 
+              </View>
+                <View style={styles.language1} >
+                  <Button title="TH" /> 
+                </View>
           </View>
-           <View >
-            <Button title="EN" />
+        {/* End language bar */}
+        <View style={styles.title}>
+          <Text > CMU GREEN BIN </Text>
           </View>
+
+
+
       </View>
     );
   }
@@ -31,16 +43,22 @@ export default class THEBALLYANDTHETRASH extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#338378',
+  }, languageBar: {
+flexDirection:'row',
   },language:{
-    flex:2,
-    backgroundColor:'#ff4d4d',
-    alignItems: 'center',
+    flex:1,
+    alignItems: 'flex-end',
     borderRadius:20,
-    margin:10,
-  },
+    margin:5,
+  },language1:{
+    borderRadius:20,
+    margin:5,
+  },title:{
+  flexDirection:'row',
+  justifyContent: 'center',
+  }
+  
 });
 
 AppRegistry.registerComponent('THEBALLYANDTHETRASH', () => THEBALLYANDTHETRASH);

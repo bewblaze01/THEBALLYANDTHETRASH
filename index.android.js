@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
+import Chart from 'react-native-chart';
 
 const strings = new LocalizedStrings({
  en:{
@@ -45,9 +46,19 @@ const strings = new LocalizedStrings({
     got:"เข้าใจแล้ว!"
  }
 });
-
+const data = [
+	[0, 0],
+	[1, 3],
+	[2, 7],
+  [3, 9],
+  [4, 2],
+  [5, 4],
+  [6, 1],
+  [7, 10],
+ 
+];
 export default class THEBALLYANDTHETRASH extends Component {
-
+  
   state = {
     isModalVisible: false
   }
@@ -108,7 +119,17 @@ _onTH(){
           <Text style={styles.header1}> {strings.binStat} </Text>
           </View>
            <View style={styles.graphContainer}>
-           <Text > {strings.graph}</Text>
+             <Chart
+					style={styles.chart}
+					data={data}
+					verticalGridStep={4}
+					type="line"
+					showDataPoint={true}
+          color="#46c7b6"   
+          hideVerticalGridLines	={true}
+					fillColor="#b1e7e0"
+          dataPointFillColor="#2dbfac"
+				 />
           </View>
 
             {/* End graph bar */}
@@ -159,7 +180,10 @@ _onTH(){
          
            
             <View style={styles.modalContent}>
-          <Text>Hello!</Text>
+              
+       
+         
+         
           </View>
        
               <View style={styles.button}>
@@ -371,7 +395,10 @@ footerContainer: {
     marginRight : 30,
     marginBottom : 20,
     borderRadius:6
-  },
+  },  chart: {
+		width: 350,
+		height: 200,
+	},
 
 header:{
       fontFamily: 'verdana',
@@ -397,7 +424,7 @@ header:{
   modalContent: {
     backgroundColor: 'white',
     padding: 22,
-    justifyContent: 'center',
+  
     alignItems: 'center',
     borderTopLeftRadius:6,
     borderTopRightRadius:6,

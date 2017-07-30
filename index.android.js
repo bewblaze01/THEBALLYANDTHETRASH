@@ -12,7 +12,8 @@ import {
   View,
   Button,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Image
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 
@@ -82,8 +83,9 @@ _onTH(){
 
         {/* start title bar */}
         <View style={styles.title}>
-          <Text style={styles.header} >CMU   
-           <Text style={{ fontStyle : 'italic',color:'#15e498'}} > GREEN</Text>  BIN</Text>
+          <Image source={require('./pic/logo.png')} style={{width:350,resizeMode: 'contain' }}/>
+          {/* <Text style={styles.header} >CMU   
+           <Text style={{ fontStyle : 'italic',color:'#15e498'}} > GREEN</Text>  BIN</Text> */}
           </View>
           {/* End title bar */}
 
@@ -160,7 +162,7 @@ _onTH(){
 
                 <View style={styles.searchContainer}>
             <View style={styles.searchIcon}>
-           <Text > icon </Text>
+           <Image source={require('./pic/icon_magnify.png')} style={{width:20,resizeMode: 'contain' }}/>
           </View>
           <View style={styles.searchItem}>
           <TextInput
@@ -219,6 +221,8 @@ title:{
 title1:{
     flexDirection:'row',
     justifyContent: 'center',
+    
+        alignItems: 'center',
     backgroundColor : '#1fbba6',
     flex:0.7,
     marginLeft : 30,
@@ -316,6 +320,8 @@ searchContainer: {
   searchIcon:{
       flex:1,
       backgroundColor:'#161c1a',
+      justifyContent: 'center', 
+        alignItems: 'center',
       borderBottomLeftRadius:6,
   },
 searchItem:{

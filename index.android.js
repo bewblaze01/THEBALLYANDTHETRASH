@@ -21,7 +21,6 @@ const strings = new LocalizedStrings({
    binStat:"BIN STATISTICS",
    graph:"graph",
    item:"COKE CAN",
-   choice:"How to choose the egg",
    how:"How to Recycle",
     stat:"Statistics",
     you:"By You",

@@ -14,15 +14,50 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native';
+import LocalizedStrings from 'react-native-localization';
+
+const strings = new LocalizedStrings({
+ en:{
+   binStat:"BIN STATISTICS",
+   graph:"graph",
+   item:"COKE CAN",
+   choice:"How to choose the egg",
+   how:"How to Recycle",
+    stat:"Statistics",
+    you:"By You",
+    other:"By Others",
+    total:"In Total",
+    find: "Find my item..",
+    recycle:"RECYCLE ITEM"
+ },th :{
+   binStat:"สถิติ ขยะ",
+   graph:"กราฟ",
+   stat:"สถิติ",
+   item:"โคเคน",
+   how: "นำไปรีไซเคิลได้อย่างไร",
+   you:"ของคุณ",
+    other:"ของคนอื่น",
+    total:"รวมทั้งหมด",
+    find: "ค้นหาของฉัน",
+    recycle:"ทิ้งขยะทันที"
+ }
+});
 
 export default class THEBALLYANDTHETRASH extends Component {
     constructor(props) {
     super(props);
     this.state = { text: 'Find my item ...',
                   
-  };
-    
+  };   
   }
+ _onEN(){
+   strings.setLanguage('en');
+   this.setState({});
+ }
+_onTH(){
+  strings.setLanguage('th');
+  this.setState({});
+}
   render() {
     return (
       <View style={styles.container}>
@@ -31,10 +66,10 @@ export default class THEBALLYANDTHETRASH extends Component {
        {/* start language bar */}
           <View style={styles.languageBar}>
               <View style={styles.language} >
-                <Button color='#15e498' title="EN"  /> 
+                <Button color='#15e498' title="EN" onPress={()=>this._onEN()} /> 
               </View>
                 <View style={styles.language1} >
-                  <Button color='#253f3b' title="TH" style={styles.button2} /> 
+                  <Button color='#253f3b' title="TH" style={styles.button2} onPress={()=>this._onTH()} /> 
                 </View>
           </View>
         {/* End language bar */}
@@ -50,10 +85,10 @@ export default class THEBALLYANDTHETRASH extends Component {
            {/* start graph bar */}
            
              <View style={styles.title1}>
-          <Text style={styles.header1}> BIN STATISTICS </Text>
+          <Text style={styles.header1}> {strings.binStat} </Text>
           </View>
            <View style={styles.graphContainer}>
-           <Text > graph</Text>
+           <Text > {strings.graph}</Text>
           </View>
 
             {/* End graph bar */}
@@ -85,7 +120,7 @@ export default class THEBALLYANDTHETRASH extends Component {
              <Text > 1 </Text>
           </View>
           <View style={styles.statSecond}>
-             <Text style={{fontWeight:'bold',color:'black'}}> COKE CAN </Text>
+             <Text style={{fontWeight:'bold',color:'black'}}> {strings.item} </Text>
           </View>
           </View>
            {/* end statLeft bar */}
@@ -96,11 +131,11 @@ export default class THEBALLYANDTHETRASH extends Component {
           <View style={styles.statTopR}>
             <View style={styles.statThree}>
             <TouchableOpacity style={{backgroundColor:'#1fbba6',marginTop:6,marginRight:6,padding:6,borderRadius:6}}>
-             <Text style={{color:'#ffffff'}}>How to Recycle</Text>
+             <Text style={{color:'#ffffff'}}>{strings.how}</Text>
             </TouchableOpacity>
              </View>
              <View style={styles.statFour}>
-                  <Text style={{color:'#a2a2a2',marginLeft:11,marginTop:10,fontSize:15,fontWeight:'bold'}} > Statistics </Text>
+                  <Text style={{color:'#a2a2a2',marginLeft:11,marginTop:10,fontSize:15,fontWeight:'bold'}} > {strings.stat} </Text>
              </View>
              <View style={styles.statFive}>
                <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end',marginLeft:20}}><Text style={{color:'black'}} > 10 </Text></View>
@@ -109,9 +144,9 @@ export default class THEBALLYANDTHETRASH extends Component {
          
              </View>
              <View style={styles.statSix}>
-                     <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start',marginLeft:20}}><Text> By You </Text></View>
-                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start'}}><Text> By Others </Text></View>
-                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start'}}><Text> In Total </Text></View>
+                     <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start',marginLeft:20}}><Text> {strings.you} </Text></View>
+                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start'}}><Text> {strings.other} </Text></View>
+                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-start'}}><Text> {strings.total} </Text></View>
              </View>
           </View>
           </View>
@@ -125,7 +160,7 @@ export default class THEBALLYANDTHETRASH extends Component {
           <TextInput
         style={{height: 40, borderColor: 'gray', borderWidth: 1,color:'#FFFF'}}
         onChangeText={(text) => this.setState({text})}
-        value={this.state.text}
+        value={strings.find}
       />
           </View>
           </View>
@@ -133,7 +168,7 @@ export default class THEBALLYANDTHETRASH extends Component {
           <View style={styles.footerContainer}>
 
             <TouchableOpacity style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}}>
-             <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>RECYCLE ITEM</Text>
+             <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>{strings.recycle}</Text>
             </TouchableOpacity>
           </View>
 

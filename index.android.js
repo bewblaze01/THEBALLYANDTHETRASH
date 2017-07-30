@@ -47,16 +47,23 @@ export default class THEBALLYANDTHETRASH extends Component {
     constructor(props) {
     super(props);
     this.state = { text: 'Find my item ...',
-                  
-  };   
+    colorButton1: '#15e498',
+    colorButton2: '#253f3b',              
+  }; 
   }
  _onEN(){
    strings.setLanguage('en');
-   this.setState({});
+   this.setState({
+     colorButton1: '#15e498',
+    colorButton2: '#253f3b',  
+   });
  }
 _onTH(){
   strings.setLanguage('th');
-  this.setState({});
+  this.setState({
+    colorButton1: '#253f3b',
+    colorButton2: '#15e498',  
+  });
 }
   render() {
     return (
@@ -66,10 +73,10 @@ _onTH(){
        {/* start language bar */}
           <View style={styles.languageBar}>
               <View style={styles.language} >
-                <Button color='#15e498' title="EN" onPress={()=>this._onEN()} /> 
+                <Button color={this.state.colorButton1} title="EN" onPress={()=>this._onEN()} /> 
               </View>
                 <View style={styles.language1} >
-                  <Button color='#253f3b' title="TH" style={styles.button2} onPress={()=>this._onTH()} /> 
+                  <Button color={this.state.colorButton2} title="TH" style={styles.button2} onPress={()=>this._onTH()} /> 
                 </View>
           </View>
         {/* End language bar */}

@@ -16,6 +16,7 @@ import {
   Image
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
+import Modal from 'react-native-modal'
 
 const strings = new LocalizedStrings({
  en:{
@@ -28,7 +29,8 @@ const strings = new LocalizedStrings({
     other:"By Others",
     total:"In Total",
     find: "Find my item..",
-    recycle:"RECYCLE ITEM"
+    recycle:"RECYCLE ITEM",
+    got:"GOT IT!",
  },th :{
    binStat:"สถิติ ขยะ",
    graph:"กราฟ",
@@ -39,11 +41,21 @@ const strings = new LocalizedStrings({
     other:"ของคนอื่น",
     total:"รวมทั้งหมด",
     find: "ค้นหาของฉัน",
-    recycle:"ทิ้งขยะทันที"
+    recycle:"ทิ้งขยะทันที",
+    got:"เข้าใจแล้ว!"
  }
 });
 
 export default class THEBALLYANDTHETRASH extends Component {
+
+  state = {
+    isModalVisible: false
+  }
+
+  _showModal = () => this.setState({ isModalVisible: true })
+
+  _hideModal = () => this.setState({ isModalVisible: false })
+
     constructor(props) {
     super(props);
     this.state = { text: 'Find my item ...',
@@ -83,7 +95,7 @@ _onTH(){
 
         {/* start title bar */}
         <View style={styles.title}>
-          <Image source={require('./pic/logo.png')} style={{width:350,resizeMode: 'contain' }}/>
+          <Image source={require('./pic/logo.png')} style={{width:350,resizeMode: 'contain', }}/>
           {/* <Text style={styles.header} >CMU   
            <Text style={{ fontStyle : 'italic',color:'#15e498'}} > GREEN</Text>  BIN</Text> */}
           </View>
@@ -138,9 +150,29 @@ _onTH(){
            {/* start statRight bar */}
           <View style={styles.statTopR}>
             <View style={styles.statThree}>
-            <TouchableOpacity style={{backgroundColor:'#1fbba6',marginTop:6,marginRight:6,padding:6,borderRadius:6}}>
+
+
+            <TouchableOpacity  onPress={this._showModal} style={{backgroundColor:'#1fbba6',marginTop:6,marginRight:6,padding:6,borderRadius:6}}>
              <Text style={{color:'#ffffff'}}>{strings.how}</Text>
             </TouchableOpacity>
+            <Modal isVisible={this.state.isModalVisible}>
+         
+           
+            <View style={styles.modalContent}>
+          <Text>Hello!</Text>
+          </View>
+       
+              <View style={styles.button}>
+                 <TouchableOpacity  onPress={this._hideModal} style={{backgroundColor:'#1fbba6',borderRadius:6}}>
+              <Text>{strings.got}</Text>
+ </TouchableOpacity>
+             </View>
+           
+          
+        </Modal>
+
+
+
              </View>
              <View style={styles.statFour}>
                   <Text style={{color:'#a2a2a2',marginLeft:11,marginTop:10,fontSize:15,fontWeight:'bold'}} > {strings.stat} </Text>
@@ -353,7 +385,29 @@ header:{
     fontSize:22  ,
     fontWeight: '900',
     color : 'white',
-}
+},button: {
+    backgroundColor:'#f2f2f2',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    flex:1,
+    borderBottomLeftRadius:6,
+    borderBottomRightRadius:6
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopLeftRadius:6,
+    borderTopRightRadius:6,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+    flex : 8
+  },
+  bottomModal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
   
   
 });

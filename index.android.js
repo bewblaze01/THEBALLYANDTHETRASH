@@ -13,11 +13,14 @@ import {
   Button,
   TouchableOpacity,
   TextInput,
-  Image
+  Image,
+  AsyncStorage,
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
 import Chart from 'react-native-chart';
+
+const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
  en:{
@@ -56,7 +59,24 @@ export default class THEBALLYANDTHETRASH extends Component {
   _showModal = () => this.setState({ isModalVisible: true })
 
   _hideModal = () => this.setState({ isModalVisible: false })
-
+    
+  componentDidMount(){
+    AsyncStorage.getItem(ByYou_KEY)
+    .then((value)=> {
+      this.setState({
+        byYou: (value == null)? 0:JSON.parse(value),
+      })
+      console.log('Value: '+value)
+      console.log('byYou: '+this.state.byYou)
+    })
+    .catch((error)=> console.log('AsyncStorage:'+error.message))
+  }
+   _save(){
+        AsyncStorage.setItem(ByYou_KEY,JSON.stringify(this.state.byYou))
+        .then(()=>console.log('Your byYou '+this.state.byYou+' has been saved'))
+        .catch((error)=> console.log('AsyncStorage: '+error.message ))
+        .done();
+      }
     constructor(props) {
     super(props);
     this.state = { text: 'Find my item ...',
@@ -66,7 +86,10 @@ export default class THEBALLYANDTHETRASH extends Component {
     general : null,
     compostable : null,
     recycle: null,
-    hazardous: null,             
+    hazardous: null,
+    byYou: null,
+    byOthers: null,
+    inTotal: null,             
   };
   this._fetchAPI();
   
@@ -82,6 +105,10 @@ _fetchAPI(){
                 compostable:Number.parseInt(responseJSON.data.bin_statistics.compostable,10),
                 recycle:Number.parseInt(responseJSON.data.bin_statistics.recycle,10),
                 hazardous:Number.parseInt(responseJSON.data.bin_statistics.hazardous,10),
+            });
+            this.setState({
+              byOthers: this.state.general+this.state.compostable+this.state.recycle+this.state.hazardous-this.state.byYou,
+              inTotal: this.state.general+this.state.compostable+this.state.recycle+this.state.hazardous,
             });
             console.log(this.state.list);
         })
@@ -223,9 +250,9 @@ _onTH(){
                   <Text style={{color:'#a2a2a2',marginLeft:11,marginTop:10,fontSize:15,fontWeight:'bold'}} > {strings.stat} </Text>
              </View>
              <View style={styles.statFive}>
-               <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end',marginLeft:20}}><Text style={{color:'black'}} > 10 </Text></View>
-                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end'}}><Text style={{color:'black'}} > 365 </Text></View>
-                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end'}}><Text style={{color:'black'}} > 374 </Text></View>
+               <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end',marginLeft:20}}><Text style={{color:'black'}} > {this.state.byYou} </Text></View>
+                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end'}}><Text style={{color:'black'}} > {this.state.byOthers} </Text></View>
+                   <View style={{flex:1, flexDirection:'column',justifyContent: 'flex-end'}}><Text style={{color:'black'}} > {this.state.inTotal} </Text></View>
          
              </View>
              <View style={styles.statSix}>

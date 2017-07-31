@@ -16,10 +16,11 @@ import {
   Image,
   AsyncStorage,
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
 import Chart from 'react-native-chart';
-
+import IdentifyTrash from './main'
 const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
@@ -50,7 +51,11 @@ const strings = new LocalizedStrings({
  }
 });
 
-export default class THEBALLYANDTHETRASH extends Component {
+
+
+
+
+export default class main extends Component {
   
   state = {
     isModalVisible: false
@@ -131,12 +136,14 @@ _onTH(){
   });
 }
   render() {
+   
     let data = [
 	["com", this.state.compostable],
 	["ge", this.state.general],
   ["re", this.state.recycle],
   ["ha", this.state.hazardous],
 ];
+
     return (
       <View style={styles.container}>
 
@@ -206,7 +213,7 @@ _onTH(){
           <View style={styles.statContainer}>
             <View style={styles.statTopL}>
               <View style={styles.statFirst}>
-             <Text > 1 </Text>
+              <Image source={require('./pic/Cokecan.png')} style={{width:50,resizeMode: 'contain', }}/>
           </View>
           <View style={styles.statSecond}>
              <Text style={{fontWeight:'bold',color:'black'}}> {strings.item} </Text>
@@ -279,7 +286,7 @@ _onTH(){
 
           <View style={styles.footerContainer}>
 
-            <TouchableOpacity style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}}>
+            <TouchableOpacity  style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}}>
              <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>{strings.recycle}</Text>
             </TouchableOpacity>
           </View>
@@ -370,9 +377,13 @@ statTopL: {
   },
 statFirst: {
       flex:3,
-       backgroundColor: 'blue',
-       borderTopLeftRadius:6,
-  },
+       justifyContent: 'center',
+       alignItems: 'center',
+        borderBottomWidth:1, 
+        borderRightWidth:1,
+       borderColor: '#ccc',
+       
+  },  
 statSecond: {
       flex:1,
        backgroundColor: 'white',
@@ -488,4 +499,3 @@ header:{
 });
 
 
-AppRegistry.registerComponent('theballyandthetrash', () => THEBALLYANDTHETRASH);

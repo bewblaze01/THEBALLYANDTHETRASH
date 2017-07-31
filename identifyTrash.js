@@ -52,7 +52,10 @@ const strings = new LocalizedStrings({
  }
 });
 
-export default class THEBALLYANDTHETRASH extends Component {
+export default class IdentifyTrash extends Component {
+      static navigationOptions = {
+    title: 'Chat with Lucy',
+  };
     constructor(props) {
     super(props);
     this.state = {
@@ -307,4 +310,4 @@ header:{
 });
 
 
-AppRegistry.registerComponent('theballyandthetrash', () => THEBALLYANDTHETRASH);
+

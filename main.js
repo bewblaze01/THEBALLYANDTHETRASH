@@ -206,7 +206,7 @@ _onTH(){
           <View style={styles.statContainer}>
             <View style={styles.statTopL}>
               <View style={styles.statFirst}>
-              <Image source={require('./pic/Cokecan.png')} style={{width:50,resizeMode: 'contain', }}/>
+             <Text > 1 </Text>
           </View>
           <View style={styles.statSecond}>
              <Text style={{fontWeight:'bold',color:'black'}}> {strings.item} </Text>
@@ -370,13 +370,9 @@ statTopL: {
   },
 statFirst: {
       flex:3,
-       justifyContent: 'center',
-       alignItems: 'center',
-        borderBottomWidth:1, 
-        borderRightWidth:1,
-       borderColor: '#ccc',
-       
-  },  
+       backgroundColor: 'blue',
+       borderTopLeftRadius:6,
+  },
 statSecond: {
       flex:1,
        backgroundColor: 'white',

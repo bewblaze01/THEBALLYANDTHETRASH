@@ -46,17 +46,7 @@ const strings = new LocalizedStrings({
     got:"เข้าใจแล้ว!"
  }
 });
-const data = [
-	[0, 0],
-	[1, 3],
-	[2, 7],
-  [3, 9],
-  [4, 2],
-  [5, 4],
-  [6, 1],
-  [7, 10],
- 
-];
+
 export default class THEBALLYANDTHETRASH extends Component {
   
   state = {
@@ -71,9 +61,34 @@ export default class THEBALLYANDTHETRASH extends Component {
     super(props);
     this.state = { text: 'Find my item ...',
     colorButton1: '#15e498',
-    colorButton2: '#253f3b',              
-  }; 
+    colorButton2: '#253f3b',
+    wasteStat : null,
+    general : null,
+    compostable : null,
+    recycle: null,
+    hazardous: null,             
+  };
+  this._fetchAPI();
+  
   }
+_fetchAPI(){
+  fetch('http://smartbin.devfunction.com/api/?team_id=7&secret=fs4VcN')
+        .then((response) => response.json())
+        .then((responseJSON) => {
+            console.log(responseJSON);
+            this.setState({
+                wasteStat : responseJSON.data.waste_statistics,
+                general: Number.parseInt(responseJSON.data.bin_statistics.general, 10),
+                compostable:Number.parseInt(responseJSON.data.bin_statistics.compostable,10),
+                recycle:Number.parseInt(responseJSON.data.bin_statistics.recycle,10),
+                hazardous:Number.parseInt(responseJSON.data.bin_statistics.hazardous,10),
+            });
+            console.log(this.state.list);
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+}
  _onEN(){
    strings.setLanguage('en');
    this.setState({
@@ -89,6 +104,12 @@ _onTH(){
   });
 }
   render() {
+    let data = [
+	["com", this.state.compostable],
+	["ge", this.state.general],
+  ["re", this.state.recycle],
+  ["ha", this.state.hazardous],
+];
     return (
       <View style={styles.container}>
 
@@ -122,8 +143,8 @@ _onTH(){
              <Chart
 					style={styles.chart}
 					data={data}
-					verticalGridStep={4}
-					type="line"
+					verticalGridStep={2}
+					type="bar"
 					showDataPoint={true}
           color="#46c7b6"   
           hideVerticalGridLines	={true}

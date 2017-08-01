@@ -24,34 +24,27 @@ const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
  en:{
-   binStat:"BIN STATISTICS",
-   graph:"graph",
-   item:"COKE CAN",
-   how:"How to Recycle",
-    stat:"Statistics",
-    you:"By You",
-    other:"By Others",
-    total:"In Total",
-    find: "Find my item..",
-    recycle:"BIN INDENTIFIER",
-    got:"GOT IT!",
-    back:"back",
+    back:"Back",
  },th :{
-   binStat:"สถิติ ขยะ",
-   graph:"กราฟ",
-   stat:"สถิติ",
-   item:"โคเคน",
-   how: "นำไปรีไซเคิลได้อย่างไร",
-   you:"ของคุณ",
-    other:"ของคนอื่น",
-    total:"รวมทั้งหมด",
-    find: "ค้นหาของฉัน",
-    recycle:"ค้นหาเจ้าขยะ",
-    got:"เข้าใจแล้ว!",
     back:"กลับ",
  }
 });
-
+const image = [
+  require('./pic/but1.png'),
+  require('./pic/but2.png'),
+  require('./pic/but3.png'),
+  require('./pic/but4.png'),
+  require('./pic/but5.png'),
+  require('./pic/but6.png'),
+]
+const imageThai =[
+  require('./pic/button1t.png'),
+  require('./pic/button2t.png'),
+  require('./pic/button3t.png'),
+  require('./pic/button4t.png'),
+  require('./pic/button5t.png'),
+  require('./pic/button6t.png'),
+]
 export default class identifyTrash extends Component {
 
     constructor(props) {
@@ -60,11 +53,23 @@ export default class identifyTrash extends Component {
     this.state={
     colorButton1: '#15e498',
     colorButton2: '#253f3b',
+    but1: image[0],
+    but2: image[1],
+    but3: image[2],
+    but4: image[3],
+    but5: image[4],
+    but6: image[5],
   };
     }else{
       this.state={
         colorButton1: '#253f3b',
     colorButton2: '#15e498',
+      but1: imageThai[0],
+    but2: imageThai[1],
+    but3: imageThai[2],
+    but4: imageThai[3],
+    but5: imageThai[4],
+    but6: imageThai[5],
       }
     }
     
@@ -77,7 +82,13 @@ static navigationOptions = ({navigation }) =>{
    strings.setLanguage('en');
    this.setState({
      colorButton1: '#15e498',
-    colorButton2: '#253f3b',  
+    colorButton2: '#253f3b', 
+      but1: image[0],
+    but2: image[1],
+    but3: image[2],
+    but4: image[3],
+    but5: image[4],
+    but6: image[5], 
    });
  }
 _onTH(){
@@ -85,6 +96,12 @@ _onTH(){
   this.setState({
     colorButton1: '#253f3b',
     colorButton2: '#15e498',  
+      but1: imageThai[0],
+    but2: imageThai[1],
+    but3: imageThai[2],
+    but4: imageThai[3],
+    but5: imageThai[4],
+    but6: imageThai[5],
   });
 }
   render() {
@@ -123,17 +140,17 @@ _onTH(){
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
                   <TouchableOpacity>
-                  <Image source={require('./pic/but1.png')} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
                  <View style={styles.buttonTwo}>
                       <TouchableOpacity>
-                  <Image source={require('./pic/but3.png')} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                  <Image source={this.state.but3} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
                  <View style={styles.buttonThree}>
                       <TouchableOpacity>
-                  <Image source={require('./pic/but5.png')} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                  <Image source={this.state.but5} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
               </View>
@@ -144,17 +161,17 @@ _onTH(){
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
                       <TouchableOpacity>
-                  <Image source={require('./pic/but2.png')} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                  <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  </View>
                  <View style={styles.buttonFive}>
                       <TouchableOpacity>
-                  <Image source={require('./pic/but4.png')} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                  <Image source={this.state.but4} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  </View>
                  <View style={styles.buttonSix}>
                       <TouchableOpacity>
-                  <Image source={require('./pic/but6.png')} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                  <Image source={this.state.but6} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  </View>
                 </View>

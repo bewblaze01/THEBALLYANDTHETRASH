@@ -130,9 +130,10 @@ _onTH(){
                  </TouchableOpacity>
                 </View>
               </View>
+              </ScrollView>
                 {/* end statLeft bar */}
 
-
+ <ScrollView>
                 {/* start statRight bar */}
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>

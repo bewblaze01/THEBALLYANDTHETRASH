@@ -139,7 +139,7 @@ _onTH(){
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
-                  <TouchableOpacity>
+                  <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash1',{lang:strings.getLanguage()}) } >
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>

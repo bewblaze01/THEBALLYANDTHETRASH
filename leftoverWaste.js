@@ -31,8 +31,9 @@ const strings = new LocalizedStrings({
  }
 });
 const image = [
-  require('./pic/pic_foodwaste.jpg'),
-  require('./pic/pic_meatwaste.jpg'),
+  require('./pic/food_waste.jpg'),
+  require('./pic/fruitpeels.jpg'),
+  require('./pic/vegiewaste.jpg'),
 ]
 
 export default class leftoverWaste extends Component {
@@ -45,6 +46,8 @@ export default class leftoverWaste extends Component {
     colorButton2: '#253f3b',
     but1: image[0],
     but2: image[1],
+    but3: image[2],
+    
   };
     }else{
         this.state={
@@ -53,6 +56,7 @@ export default class leftoverWaste extends Component {
       
        but1: image[0],
     but2: image[1],
+    but3: image[2],
       }
     }
     
@@ -68,6 +72,7 @@ static navigationOptions = ({navigation }) =>{
     colorButton2: '#253f3b', 
       but1: image[0],
     but2: image[1],
+    but3: image[2],
    });
  }
 _onTH(){
@@ -77,6 +82,7 @@ _onTH(){
     colorButton2: '#15e498',  
       but1: image[0],
     but2: image[1],
+    but3: image[2],
   });
 }
   render() {
@@ -120,13 +126,7 @@ _onTH(){
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  <TouchableOpacity>
-                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
-                 </TouchableOpacity>
-                 <TouchableOpacity>
-                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
-                 </TouchableOpacity>
-                 <TouchableOpacity>
-                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                  <Image source={this.state.but3} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
               </View>
@@ -140,9 +140,7 @@ _onTH(){
                       <TouchableOpacity>
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
-                 <TouchableOpacity>
-                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
-                 </TouchableOpacity>
+               
     
                  </View>
                 </View>

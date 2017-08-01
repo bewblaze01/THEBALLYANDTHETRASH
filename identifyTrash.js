@@ -144,12 +144,12 @@ _onTH(){
                  </TouchableOpacity>
                 </View>
                  <View style={styles.buttonTwo}>
-                      <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash2',{lang:strings.getLanguage()}) }>
+                      <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash3',{lang:strings.getLanguage()}) }>
                   <Image source={this.state.but3} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
                  <View style={styles.buttonThree}>
-                      <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash3',{lang:strings.getLanguage()}) }>
+                      <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash5',{lang:strings.getLanguage()}) }>
                   <Image source={this.state.but5} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>  
                 </View>
@@ -160,12 +160,12 @@ _onTH(){
                 {/* start statRight bar */}
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
-                      <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash4',{lang:strings.getLanguage()}) }>
+                      <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash2',{lang:strings.getLanguage()}) }>
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  </View>
                  <View style={styles.buttonFive}>
-                      <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash5',{lang:strings.getLanguage()}) }>
+                      <TouchableOpacity  onPress={()=>this.props.navigation.navigate('Trash4',{lang:strings.getLanguage()}) }>
                   <Image source={this.state.but4} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  </View>

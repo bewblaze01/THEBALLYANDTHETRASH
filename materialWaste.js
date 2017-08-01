@@ -31,8 +31,8 @@ const strings = new LocalizedStrings({
  }
 });
 const image = [
-  require('./pic/pic_foodwaste.jpg'),
-  require('./pic/pic_meatwaste.jpg'),
+  require('./pic/cloth.jpg'),
+  require('./pic/paper.jpeg'),
 ]
 
 export default class materialWaste extends Component {
@@ -75,8 +75,8 @@ _onTH(){
   this.setState({
     colorButton1: '#253f3b',
     colorButton2: '#15e498',  
-      but1: imageThai[0],
-    but2: imageThai[1],
+ but1: image[0],
+    but2: image[1],
   });
 }
   render() {
@@ -110,7 +110,7 @@ _onTH(){
 
 
             {/* Button */}
-          <View style={styles.statContainer}>
+                  <View style={styles.statContainer}>
               <ScrollView>
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
@@ -118,17 +118,21 @@ _onTH(){
                   <TouchableOpacity>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
+   
                 </View>
               </View>
+              </ScrollView>
                 {/* end statLeft bar */}
 
-
+ <ScrollView>
                 {/* start statRight bar */}
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
                       <TouchableOpacity>
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
+               
+    
                  </View>
                 </View>
                 {/* end statRight bar */}

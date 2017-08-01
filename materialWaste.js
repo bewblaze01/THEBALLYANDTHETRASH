@@ -15,6 +15,7 @@ import {
   TextInput,
   Image,
   AsyncStorage,
+    ScrollView
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'

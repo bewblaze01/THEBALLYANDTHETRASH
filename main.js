@@ -58,7 +58,26 @@ const strings = new LocalizedStrings({
  }
 });
 
-
+const allButton = [
+  require('./pic/all.png'),
+  require('./pic/all_click.png')
+]
+const blueButton = [
+  require('./pic/blue.png'),
+   require('./pic/blue_c.png')
+]
+const redButton = [
+  require('./pic/red.png'),
+   require('./pic/red_c.png')
+]
+const yellowButton = [
+   require('./pic/yellow.png'),
+   require('./pic/yellow_c.png')
+]
+const greenButton = [
+  require('./pic/green.png'),
+   require('./pic/green_c.png')
+]
 
 
 
@@ -100,7 +119,12 @@ class main extends Component {
     hazardous: null,
     byYou: null,
     byOthers: null,
-    inTotal: null,             
+    inTotal: null,
+    all: allButton[1],
+    green: greenButton[0],
+    yellow: yellowButton[0],
+    red: redButton[0],
+    blue: blueButton[0],          
   };
   this._fetchAPI();
   }
@@ -150,6 +174,51 @@ _onTH(){
     colorButton1: '#253f3b',
     colorButton2: '#15e498',  
   });
+}
+_onAll(){
+  this.setState({
+   all: allButton[1],
+    green: greenButton[0],
+    yellow: yellowButton[0],
+    red: redButton[0],
+    blue: blueButton[0],  
+  })
+}
+_onBlue(){
+  this.setState({
+   all: allButton[0],
+    green: greenButton[0],
+    yellow: yellowButton[0],
+    red: redButton[0],
+    blue: blueButton[1],  
+  })
+}
+_onGreen(){
+  this.setState({
+   all: allButton[0],
+    green: greenButton[1],
+    yellow: yellowButton[0],
+    red: redButton[0],
+    blue: blueButton[0],  
+  })
+}
+_onYellow(){
+  this.setState({
+   all: allButton[0],
+    green: greenButton[0],
+    yellow: yellowButton[1],
+    red: redButton[0],
+    blue: blueButton[0],  
+  })
+}
+_onRed(){
+  this.setState({
+   all: allButton[0],
+    green: greenButton[0],
+    yellow: yellowButton[0],
+    red: redButton[1],
+    blue: blueButton[0],  
+  })
 }
   render() {
    const { navigate } = this.props.navigation;
@@ -222,28 +291,28 @@ _onTH(){
              {/* Start binselect bar */}
           <View style={styles.binContainer}>
            <View style={styles.select} >
-                <TouchableOpacity  >
-              <Image source={require('./pic/all_click.png')} style={{width:35,resizeMode:'contain', }}/>
+                <TouchableOpacity onPress={()=>this._onAll()} >
+              <Image source={this.state.all} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
               </View>
               <View style={styles.select} >
-                  <TouchableOpacity  >
-              <Image source={require('./pic/blue.png')} style={{width:35,resizeMode:'contain', }}/>
+                  <TouchableOpacity onPress={()=>this._onBlue()} >
+              <Image source={this.state.blue} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
               </View>
               <View style={styles.select} >
-                <TouchableOpacity  >
-              <Image source={require('./pic/green.png')} style={{width:35,resizeMode:'contain', }}/>
+                <TouchableOpacity onPress={()=>this._onGreen()} >
+              <Image source={this.state.green} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
               </View>
               <View style={styles.select} >
-                  <TouchableOpacity  >
-              <Image source={require('./pic/red.png')} style={{width:35,resizeMode:'contain', }}/>
+                  <TouchableOpacity onPress={()=>this._onRed()} >
+              <Image source={this.state.red} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
               </View>
               <View style={styles.select} >
-                 <TouchableOpacity  >
-              <Image source={require('./pic/yellow.png')} style={{width:35,resizeMode:'contain', }}/>
+                 <TouchableOpacity onPress={()=>this._onYellow()}>
+              <Image source={this.state.yellow} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
               </View>
           </View>

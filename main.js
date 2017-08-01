@@ -20,7 +20,7 @@ import { StackNavigator } from 'react-navigation';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
 import Chart from 'react-native-chart';
-import IdentifyTrash from './main'
+import identifyTrash from './identifyTrash'
 const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
@@ -55,7 +55,7 @@ const strings = new LocalizedStrings({
 
 
 
-export default class main extends Component {
+class main extends Component {
   
   state = {
     isModalVisible: false
@@ -136,14 +136,13 @@ _onTH(){
   });
 }
   render() {
-   
+   const { navigate } = this.props.navigation;
     let data = [
 	["com", this.state.compostable],
 	["ge", this.state.general],
   ["re", this.state.recycle],
   ["ha", this.state.hazardous],
 ];
-
     return (
       <View style={styles.container}>
 
@@ -213,7 +212,7 @@ _onTH(){
           <View style={styles.statContainer}>
             <View style={styles.statTopL}>
               <View style={styles.statFirst}>
-              <Image source={require('./pic/Cokecan.png')} style={{width:50,resizeMode: 'contain', }}/>
+              <Image source={require('./pic/Cokecan.png')} style={{width:50,resizeMode:'contain', }}/>
           </View>
           <View style={styles.statSecond}>
              <Text style={{fontWeight:'bold',color:'black'}}> {strings.item} </Text>
@@ -286,7 +285,7 @@ _onTH(){
 
           <View style={styles.footerContainer}>
 
-            <TouchableOpacity  style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}}>
+            <TouchableOpacity  style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center'}} onPress={()=>navigate('IdTrash')}>
              <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>{strings.recycle}</Text>
             </TouchableOpacity>
           </View>
@@ -296,7 +295,10 @@ _onTH(){
     );
   }
 }
-
+const TrashApp = StackNavigator({
+  Main: {screen: main},
+  IdTrash: {screen: identifyTrash},
+},{ headerMode: 'none' });
 const styles = StyleSheet.create({
 container: {
     flex: 1,
@@ -497,5 +499,5 @@ header:{
   
   
 });
-
+export default TrashApp;
 

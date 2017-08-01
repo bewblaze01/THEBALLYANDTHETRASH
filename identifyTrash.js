@@ -19,7 +19,7 @@ import {
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
 import Chart from 'react-native-chart';
-
+import TrashApp from './main';
 const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
@@ -52,10 +52,8 @@ const strings = new LocalizedStrings({
  }
 });
 
-export default class IdentifyTrash extends Component {
-      static navigationOptions = {
-    title: 'Chat with Lucy',
-  };
+export default class identifyTrash extends Component {
+
     constructor(props) {
     super(props);
     this.state = {
@@ -153,15 +151,11 @@ _onTH(){
           </View>
           {/* End Button */}
 
-
           <View style={styles.footerContainer}>
-
-            <TouchableOpacity style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}}>
+            <TouchableOpacity style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}} onPress={()=>this.props.navigation.navigate('Main') }>
              <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>{strings.back}</Text>
             </TouchableOpacity>
           </View>
-
-
       </View>
     );
   }

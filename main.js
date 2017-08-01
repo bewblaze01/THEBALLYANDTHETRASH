@@ -27,6 +27,10 @@ import electronicWaste from './electronicWaste'
 import liquidWaste from './liquidWaste'
 import metalWaste from './metalWaste'
 import materialWaste from './materialWaste'
+import ModalBlue from './ModalBlue.js'
+import ModalGreen from './ModalGreen.js'
+import ModalRed from './ModalRed.js'
+import ModalYellow from './ModalYellow.js'
 
 const ByYou_KEY = '@ByYou:data'
 
@@ -241,7 +245,7 @@ _onRed(){
     return (
       <View style={styles.container}>
 
-
+        
        {/* start language bar */}
           <View style={styles.languageBar}>
               <View style={styles.language} >
@@ -249,6 +253,7 @@ _onRed(){
               </View>
                 <View style={styles.language1} >
                   <Button color={this.state.colorButton2} title="TH" style={styles.button2} onPress={()=>this._onTH()} /> 
+                    
                 </View>
           </View>
         {/* End language bar */}
@@ -267,24 +272,7 @@ _onRed(){
              <View style={styles.title1}>
           <Text style={styles.header1}> {strings.binStat} </Text>
           </View>
-           <View style={styles.graphContainer}>
-
-             <Chart
-					style={styles.chart}
-					data={data}
-					verticalGridStep={2}
-					type="bar"
-					showDataPoint={true}
-          color="#46c7b6"   
-          hideVerticalGridLines	={true}
-					fillColor="#b1e7e0"
-          dataPointFillColor="#2dbfac"
-				 />
-           <TouchableOpacity  onPress={this._showModal} style={{flex:1,alignItems: 'flex-end',  position: "absolute",marginTop:6,marginRight:6,borderRadius:6,left: 300}}>
-              <Image source={require('./pic/info.png')} style={{width:35,resizeMode:'contain', }}/>
-            </TouchableOpacity>
-         
-          </View>
+           <ModalBlue/>
 
             {/* End graph bar */}
 
@@ -315,6 +303,8 @@ _onRed(){
               <Image source={this.state.yellow} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
               </View>
+              
+             
           </View>
            {/* end binselect bar */}
 

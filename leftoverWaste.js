@@ -15,7 +15,8 @@ import {
   TextInput,
   Image,
   AsyncStorage,
-  ScrollView
+  ScrollView,
+  Alert,
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
@@ -171,7 +172,14 @@ _onTH(){
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
-                  <TouchableOpacity  onPress={()=>this._handleApi('food',2)}>
+                  <TouchableOpacity  onPress={() => Alert.alert(
+            'Alert Title',
+            'alertMessage',
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            ]
+          )}>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  <TouchableOpacity onPress={()=>this._handleApi('veggie',2)}>

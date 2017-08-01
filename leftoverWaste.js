@@ -120,7 +120,7 @@ static navigationOptions = ({navigation }) =>{
      colorButton1: '#15e498',
     colorButton2: '#253f3b', 
       but1: image[0],
-    but2: image[1],
+    but2: image[1], 
     but3: image[2],
    });
  }

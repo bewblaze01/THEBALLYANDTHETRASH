@@ -266,7 +266,7 @@ _onRed(){
 
         {/* start title bar */}
         <View style={styles.title}>
-          <Image source={require('./pic/logo.png')} style={{width:350,resizeMode: 'contain', }}/>
+          <Image source={require('./pic/logo.png')} style={{width:350,resizeMode: 'contain',bottom:10 }}/>
           {/* <Text style={styles.header} >CMU   
            <Text style={{ fontStyle : 'italic',color:'#15e498'}} > GREEN</Text>  BIN</Text> */}
           </View>
@@ -374,18 +374,7 @@ _onRed(){
           </View>
            {/* end statRight bar */}
 
-                {/* <View style={styles.searchContainer}>
-            <View style={styles.searchIcon}>
-           <Image source={require('./pic/icon_magnify.png')} style={{width:20,resizeMode: 'contain' }}/>
-          </View>
-          <View style={styles.searchItem}>
-          <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1,color:'#FFFF'}}
-        onChangeText={(text) => this.setState({text})}
-        value={strings.find}
-      />
-          </View>
-          </View> */}
+             
 
           <View style={styles.footerContainer}>
 

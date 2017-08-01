@@ -26,9 +26,22 @@ const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
  en:{
+    yes : "Yes",
+    no : "cancel",
     back:"Back",
+    alert:"Confirmation",
+    food : "Food waste must go into the 'Green Bin'. Please confirm if you can do this",
+    veggie : "Vegetable waste must go into the 'Green Bin'. Please confirm if you can do this",
+    fruit : "Fruit waste must go into the 'Green Bin'. Please confirm if you can do this",
  },th :{
+     yes : "ใช่",
+    no : "ยกเลิก",
     back:"กลับ",
+    alert:"ยืนยันการทิ้งขยะ",
+    food:"เศษอาหารต้องถูกทิ้งในถังขยะสีเขียว กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+     veggie:"ผักต้องถูกทิ้งในถังขยะสีเขียว กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+      fruit:"ผลไม้ต้องถูกทิ้งในถังขยะสีเขียว กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+    
  }
 });
 const image = [
@@ -36,6 +49,7 @@ const image = [
   require('./pic/fruitpeels.jpg'),
   require('./pic/vegiewaste.jpg'),
 ]
+
 
 export default class leftoverWaste extends Component {
 
@@ -135,6 +149,7 @@ _onTH(){
     but3: image[2],
   });
 }
+
   render() {
   
     return (
@@ -173,16 +188,23 @@ _onTH(){
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
                   <TouchableOpacity  onPress={() => Alert.alert(
-            'Alert Title',
-            'alertMessage',
+           strings.alert,
+             strings.food ,
             [
-              {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('food',2)},
             ]
           )}>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
-                 <TouchableOpacity onPress={()=>this._handleApi('veggie',2)}>
+                 <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.veggie ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('veggie',2)},
+            ]
+          )}>
                   <Image source={this.state.but3} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
@@ -194,7 +216,14 @@ _onTH(){
                 {/* start statRight bar */}
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
-                      <TouchableOpacity onPress={()=>this._handleApi('fruit',2)}>
+                      <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.fruit ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('fruit',2)},
+            ]
+          )}>
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                

@@ -58,7 +58,7 @@ class ModalYellow extends Component {
 
 
       return (
-         <View style={styles.container}>
+       <View style={styles.container}>
 
                      <Chart
 					style={styles.chart}
@@ -72,22 +72,55 @@ class ModalYellow extends Component {
           dataPointFillColor="#2dbfac"
 				 />
             
-            <TouchableOpacity  onPress = {() => {this.toggleModal(true)}} style={{flex:1,alignItems: 'flex-end',  position: "absolute",marginTop:6,marginRight:6,borderRadius:6,left:290}}>
+            <TouchableOpacity  onPress = {() => {this.toggleModal(true)}} style={{flex:1,alignItems: 'flex-start',  position: "absolute",marginTop:6,marginRight:6,borderRadius:6,left:50}}>
               <Image source={require('./pic/info.png')} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
+
+
 
 
             <Modal animationType = {"slide"} transparent = {false}
                visible = {this.state.modalVisible}
                onRequestClose = {() => { console.log("Modal has been closed.") } }>
+
+
                <View style = {styles.modal}>
-                  <Text style = {styles.text}>Modal is open!</Text>
-
-                  <TouchableHighlight onPress={() => {this.toggleModal(!this.state.modalVisible)}}>
-                     <Text style = {styles.text}>Close Modal</Text>
-                  </TouchableHighlight>
-
+               
+               {/* 1 */}
+                <View style = {styles.blankContainer}>
                </View>
+
+                {/* 2 */}
+               <View style = {styles.title}>
+                 <Image source={require('./pic/idenLogo.png')} style={{width:350,resizeMode: 'contain', }}/>
+               </View>
+                  {/* 3*/}
+               <View style = {styles.title1}>
+                 <Image source={require('./pic/needto.png')} style={{width:300,resizeMode: 'contain', }}/>
+               </View>
+
+                  {/* 4 */}
+               <View style = {styles.icon}>
+                   <Image source={require('./pic/binyellow.png')} style={{width:75,resizeMode: 'contain', }}/>
+               </View>
+               {/* 5 */}
+               <View style = {styles.message}>
+                 <Text> Recycling Bin is the the yellow bin. Recycling reduces the volume of waste sent to landfill and plays an important part in preserving the quality of the environment. It really helps if you thoroughly rinse all items before placing them in your bin, as dirty or unsuitable items could contaminate the entire contents.</Text>
+               </View>
+                {/* 6 */}
+               <View style = {styles.footer}>
+                  <TouchableOpacity style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}} onPress={() => {this.toggleModal(!this.state.modalVisible)}}>
+             <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>Got It</Text>
+            </TouchableOpacity>
+               </View>
+                 
+               </View>
+
+
+
+
+
+               
             </Modal>
          </View>
       )
@@ -109,11 +142,51 @@ container: {
 }, 
 	
    modal: {
-      flex: 1,
-      alignItems: 'center',
-      backgroundColor: 'yellow',
-      padding: 100
-   },
+   flex: 1,
+    backgroundColor: '#338378',
+   },bottomModal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },button: {
+
+  },blankContainer:{
+     
+    flex:1
+  },title:{
+    flexDirection:'row',
+    justifyContent: 'center',
+    flex:1,
+    marginLeft : 30,
+  marginRight : 30,
+  }, title1:{
+    
+     flexDirection:'row',
+    justifyContent: 'center',
+    flex:0.5
+  },icon:{
+   alignItems:'center',
+     flexDirection:'row',
+    justifyContent: 'center',
+    flex:2
+
+  },message:{
+       
+       flexDirection:'row',
+    justifyContent: 'center',
+       alignItems:'center',
+       padding:20,  
+    flex:3
+  },footer:{
+     flex:0.5,
+    
+    justifyContent: 'center',
+    flexDirection:'row',
+    marginTop : 10,
+    marginLeft : 30,
+    marginRight : 30,
+    marginBottom : 20,
+    borderRadius:6
+  },
 	
    text: {
       color: '#3f2949',

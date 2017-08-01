@@ -56,12 +56,23 @@ export default class identifyTrash extends Component {
 
     constructor(props) {
     super(props);
-    this.state = {
+    if(strings.getLanguage()=='en'){
+    this.state={
     colorButton1: '#15e498',
     colorButton2: '#253f3b',
-    
   };
+    }else{
+      this.state={
+        colorButton1: '#253f3b',
+    colorButton2: '#15e498',
+      }
+    }
+    
 }
+static navigationOptions = ({navigation }) =>{ 
+   strings.setLanguage(navigation.state.params.lang)
+}
+ 
  _onEN(){
    strings.setLanguage('en');
    this.setState({

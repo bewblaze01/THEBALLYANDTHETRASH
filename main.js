@@ -64,7 +64,17 @@ class main extends Component {
   _showModal = () => this.setState({ isModalVisible: true })
 
   _hideModal = () => this.setState({ isModalVisible: false })
-    
+  componentDidMount(){
+    AsyncStorage.getItem(ByYou_KEY)
+    .then((value)=> {
+      this.setState({
+        byYou: (value == null)? 0:JSON.parse(value),
+      })
+      console.log('Value: '+value)
+      console.log('byYou: '+this.state.byYou)
+    })
+    .catch((error)=> console.log('AsyncStorage:'+error.message))
+  }
    _save(){
         AsyncStorage.setItem(ByYou_KEY,JSON.stringify(this.state.byYou))
         .then(()=>console.log('Your byYou '+this.state.byYou+' has been saved'))
@@ -86,7 +96,6 @@ class main extends Component {
     inTotal: null,             
   };
   this._fetchAPI();
-  
   }
 _fetchAPI(){
   fetch('http://smartbin.devfunction.com/api/?team_id=7&secret=fs4VcN')
@@ -104,23 +113,23 @@ _fetchAPI(){
               byOthers: this.state.general+this.state.compostable+this.state.recycle+this.state.hazardous-this.state.byYou,
               inTotal: this.state.general+this.state.compostable+this.state.recycle+this.state.hazardous,
             });
-            
+            if(strings.getLanguage()=='en'){
+    this.setState({
+    colorButton1: '#15e498',
+    colorButton2: '#253f3b',
+  });
+    }else{
+      this.setState({
+        colorButton1: '#253f3b',
+    colorButton2: '#15e498',
+      })
+    }
         })
         .catch((error) => {
             console.warn(error);
         });
 }
-      componentDidMount(){
-    AsyncStorage.getItem(ByYou_KEY)
-    .then((value)=> {
-      this.setState({
-        byYou: (value == null)? 0:JSON.parse(value),
-      })
-      console.log('Value: '+value)
-      console.log('byYou: '+this.state.byYou)
-    })
-    .catch((error)=> console.log('AsyncStorage:'+error.message))
-  }
+   
  _onEN(){
    strings.setLanguage('en');
    this.setState({
@@ -285,7 +294,7 @@ _onTH(){
 
           <View style={styles.footerContainer}>
 
-            <TouchableOpacity  style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center'}} onPress={()=>navigate('IdTrash')}>
+            <TouchableOpacity  style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center'}} onPress={()=>navigate('IdTrash',{lang:strings.getLanguage()})}>
              <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>{strings.recycle}</Text>
             </TouchableOpacity>
           </View>

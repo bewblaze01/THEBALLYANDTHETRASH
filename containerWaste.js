@@ -28,6 +28,7 @@ const strings = new LocalizedStrings({
    yes : "Yes",
     no : "cancel",
     back:"Back",
+     alert:"Confirmation",
     carthon : "Carton must go into the 'Yellow Bin'. Please confirm if you can do this",
     can : "Can must go into the 'Yellow Bin'. Please confirm if you can do this",
     foam : "Foam Box must go into the 'Blue Bin'. Please confirm if you can do this",
@@ -37,6 +38,7 @@ const strings = new LocalizedStrings({
     yes : "ใช่",
     no : "ยกเลิก",
     back:"กลับ",
+     alert:"ยืนยันการทิ้งขยะ",
      carthon : "กล่องเครื่องดื่มต้องถูกทิ้งในถังขยะสีเหลือง กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
     can : "กระป๋องน้ำต้องถูกทิ้งในถังขยะสีเหลือง กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
     foam : "โฟมต้องถูกทิ้งในถังขยะสีน้ำเงิน กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
@@ -197,7 +199,7 @@ _onTH(){
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
                   <TouchableOpacity onPress={() => Alert.alert(
-           'Confirmation',
+           strings.alert,
              strings.chem ,
             [
               {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
@@ -207,7 +209,7 @@ _onTH(){
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  <TouchableOpacity onPress={() => Alert.alert(
-           'Confirmation',
+           strings.alert,
              strings.can ,
             [
               {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
@@ -217,7 +219,7 @@ _onTH(){
                   <Image source={this.state.but3} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                   <TouchableOpacity onPress={() => Alert.alert(
-           'Confirmation',
+           strings.alert,
              strings.glass ,
             [
               {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
@@ -236,7 +238,7 @@ _onTH(){
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
                       <TouchableOpacity onPress={() => Alert.alert(
-           'Confirmation',
+           strings.alert,
              strings.carthon ,
             [
               {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
@@ -246,7 +248,7 @@ _onTH(){
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 <TouchableOpacity onPress={() => Alert.alert(
-           'Confirmation',
+           strings.alert,
              strings.foam ,
             [
               {text: strings.no, onPress: () => console.log('Cancel Pressed!')},

@@ -174,7 +174,7 @@ _onTH(){
                   <TouchableOpacity  onPress={()=>this._handleApi('food',2)}>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
-                 <TouchableOpacity>
+                 <TouchableOpacity onPress={()=>this._handleApi('veggie',2)}>
                   <Image source={this.state.but3} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
@@ -186,7 +186,7 @@ _onTH(){
                 {/* start statRight bar */}
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={()=>this._handleApi('fruit',2)}>
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                

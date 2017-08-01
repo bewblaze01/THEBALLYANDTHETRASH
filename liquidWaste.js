@@ -15,7 +15,8 @@ import {
   TextInput,
   Image,
   AsyncStorage,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
@@ -24,10 +25,25 @@ import TrashApp from './main';
 const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
- en:{
+en:{
+    yes : "Yes",
+    no : "cancel",
     back:"Back",
+    alert:"Confirmation",
+    chemical : "chemical waste must go into the 'Red Bin'. Please confirm if you can do this",
+    drug :"drug waste must go into the 'Red Bin'. Please confirm if you can do this",
+    batterieCar :"batterie car waste must go into the 'Red Bin'. Please confirm if you can do this",
+    batterie :"batterie waste must go into the 'Red Bin'. Please confirm if you can do this",
  },th :{
+     yes : "ใช่",
+    no : "ยกเลิก",
     back:"กลับ",
+    alert:"ยืนยันการทิ้งขยะ",
+    chemical:"สารเคมีต้องถูกทิ้งในถังขยะสีแดง กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+     drug:"ยาต้องถูกทิ้งในถังขยะสีแดง กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+     batterieCar : "แบตเตอรี่รถยนตร์ต้องถูกทิ้งในถังขยะสีแดง กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+ batterie : "แบตเตอรี่ต้องถูกทิ้งในถังขยะสีแดง กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+    
  }
 });
 const image = [
@@ -36,6 +52,7 @@ const image = [
    require('./pic/carbat.jpg'),
     require('./pic/batteries.jpg'),
 ]
+  
 
 export default class liquidWaste extends Component {
 
@@ -62,6 +79,46 @@ export default class liquidWaste extends Component {
     }
     
 }
+
+ _handleApi(name,bin){  
+    fetch('http://smartbin.devfunction.com/api/', {
+  method: 'post',
+  body: JSON.stringify({
+    team_id: 7,
+    secret: 'fs4VcN',
+    waste_statistics: [
+      {
+        category: name,
+        selected: 1
+      }
+    ],
+    bin_statistics: {
+      general: (bin == 1)? 1:0,
+      compostable: (bin == 2)? 1:0,
+      recycle: (bin == 3)? 1:0,
+      hazardous: (bin == 4)? 1:0
+    }
+  })
+}).then((response) => response.json())
+        .then((responseJSON) => {
+            console.log(responseJSON);
+            this.setState({
+                name : responseJSON.name,
+                list: responseJSON.list,
+            });
+            console.log(this.state.list);
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+console.log('POST');
+  this.setState({
+    general: 0,
+    compostable: 0,
+    recycle:0,
+    hazardous:0,
+  })
+  }
 static navigationOptions = ({navigation }) =>{ 
    strings.setLanguage(navigation.state.params.lang)
 }
@@ -126,10 +183,24 @@ _onTH(){
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.chemical ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('chemicals',4)},
+            ]
+          )}>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
-                 <TouchableOpacity>
+                <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.batterieCar ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('batterie car',4)},
+            ]
+          )}>
                   <Image source={this.state.but3} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
@@ -141,10 +212,24 @@ _onTH(){
                 {/* start statRight bar */}
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.drug ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('drugs',4)},
+            ]
+          )}>
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.batterie ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('batteries',4)},
+            ]
+          )}>
                   <Image source={this.state.but4} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
       

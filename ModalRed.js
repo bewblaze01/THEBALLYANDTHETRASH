@@ -72,7 +72,7 @@ class ModalRed extends Component {
           dataPointFillColor="#2dbfac"
 				 />
             
-            <TouchableOpacity  onPress = {() => {this.toggleModal(true)}} style={{flex:1,alignItems: 'flex-end',  position: "absolute",marginTop:6,marginRight:6,borderRadius:6,left:290}}>
+            <TouchableOpacity onPress = {() => {this.toggleModal(true)}} style={{flex:1,alignItems: 'flex-start',  position: "absolute",marginTop:6,marginRight:6,borderRadius:6,left:50}}>
               <Image source={require('./pic/info.png')} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
 
@@ -105,7 +105,7 @@ class ModalRed extends Component {
                </View>
                {/* 5 */}
                <View style = {styles.message}>
-                 <Text> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</Text>
+                 <Text>Hazardous bin is the red bin. Biohazardous waste in any form should not be left untreated and unsecured in areas that are accessible to the public (i.e., left in hallways). Only lab personnel should remove treated biohazardous waste from the lab area and transport it to waste holding areas for final disposal.</Text>
                </View>
                 {/* 6 */}
                <View style = {styles.footer}>

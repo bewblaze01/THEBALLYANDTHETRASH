@@ -15,7 +15,8 @@ import {
   TextInput,
   Image,
   AsyncStorage,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
@@ -24,10 +25,21 @@ import TrashApp from './main';
 const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
- en:{
+  en:{
+    yes : "Yes",
+    no : "cancel",
     back:"Back",
+    alert:"Confirmation",
+    cloath : "Cloath waste must go into the 'Blue Bin'. Please confirm if you can do this",
+    paper: "Paper waste must go into the 'Blue Bin'. Please confirm if you can do this",
  },th :{
+     yes : "ใช่",
+    no : "ยกเลิก",
     back:"กลับ",
+    alert:"ยืนยันการทิ้งขยะ",
+    cloath:"เศษผ้าต้องถูกทิ้งในถังขยะสีน้ำเงิน กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+paper:"กระดาษต้องถูกทิ้งในถังขยะสีน้ำเงิน กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+    
  }
 });
 const image = [
@@ -57,6 +69,46 @@ export default class materialWaste extends Component {
     }
     
 }
+
+ _handleApi(name,bin){  
+    fetch('http://smartbin.devfunction.com/api/', {
+  method: 'post',
+  body: JSON.stringify({
+    team_id: 7,
+    secret: 'fs4VcN',
+    waste_statistics: [
+      {
+        category: name,
+        selected: 1
+      }
+    ],
+    bin_statistics: {
+      general: (bin == 1)? 1:0,
+      compostable: (bin == 2)? 1:0,
+      recycle: (bin == 3)? 1:0,
+      hazardous: (bin == 4)? 1:0
+    }
+  })
+}).then((response) => response.json())
+        .then((responseJSON) => {
+            console.log(responseJSON);
+            this.setState({
+                name : responseJSON.name,
+                list: responseJSON.list,
+            });
+            console.log(this.state.list);
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+console.log('POST');
+  this.setState({
+    general: 0,
+    compostable: 0,
+    recycle:0,
+    hazardous:0,
+  })
+  }
 static navigationOptions = ({navigation }) =>{ 
    strings.setLanguage(navigation.state.params.lang)
 }
@@ -115,7 +167,14 @@ _onTH(){
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
-                  <TouchableOpacity>
+                      <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.cloath ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('cloaths',1)},
+            ]
+          )}>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
    
@@ -128,7 +187,14 @@ _onTH(){
                 {/* start statRight bar */}
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
-                      <TouchableOpacity>
+                     <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.paper ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('paper',1)},
+            ]
+          )}>
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                

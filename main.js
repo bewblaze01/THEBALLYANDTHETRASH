@@ -31,6 +31,7 @@ import ModalBlue from './ModalBlue.js'
 import ModalGreen from './ModalGreen.js'
 import ModalRed from './ModalRed.js'
 import ModalYellow from './ModalYellow.js'
+import ModalAll from './ModalAll.js'
 
 const ByYou_KEY = '@ByYou:data'
 
@@ -129,7 +130,7 @@ class main extends Component {
     yellow: yellowButton[0],
     red: redButton[0],
     blue: blueButton[0],
-   modal: <ModalBlue/>,           
+   modal: <ModalAll/>,           
   };
   this._fetchAPI();
   }
@@ -187,7 +188,7 @@ _onAll(){
     yellow: yellowButton[0],
     red: redButton[0],
     blue: blueButton[0],  
-    modal: <ModalBlue/>  
+    modal: <ModalAll/>  
   })
 }
 _onBlue(){

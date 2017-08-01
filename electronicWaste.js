@@ -15,7 +15,8 @@ import {
   TextInput,
   Image,
   AsyncStorage,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
@@ -25,14 +26,23 @@ const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
  en:{
+    yes : "Yes",
+    no : "cancel",
     back:"Back",
+    alert:"Confirmation",
+    lightbulbs : "Food waste must go into the 'Red Bin'. Please confirm if you can do this",
  },th :{
+     yes : "ใช่",
+    no : "ยกเลิก",
     back:"กลับ",
+    alert:"ยืนยันการทิ้งขยะ",
+    lightbulbs:"หลอดไฟต้องถูกทิ้งในถังขยะสีแดง กรุณากดยืนยันหากทิ้งขยะตามถังนี้ได้",
+
+    
  }
 });
 const image = [
-  require('./pic/cloth.jpg'),
-  require('./pic/paper.jpeg'),
+  require('./pic/lightbulbs.jpg'),
 ]
 
 export default class electronicWaste extends Component {
@@ -44,7 +54,6 @@ export default class electronicWaste extends Component {
     colorButton1: '#15e498',
     colorButton2: '#253f3b',
     but1: image[0],
-    but2: image[1],
   };
     }else{
         this.state={
@@ -52,11 +61,51 @@ export default class electronicWaste extends Component {
     colorButton2: '#15e498',
       
        but1: image[0],
-    but2: image[1],
       }
     }
     
 }
+ _handleApi(name,bin){  
+    fetch('http://smartbin.devfunction.com/api/', {
+  method: 'post',
+  body: JSON.stringify({
+    team_id: 7,
+    secret: 'fs4VcN',
+    waste_statistics: [
+      {
+        category: name,
+        selected: 1
+      }
+    ],
+    bin_statistics: {
+      general: (bin == 1)? 1:0,
+      compostable: (bin == 2)? 1:0,
+      recycle: (bin == 3)? 1:0,
+      hazardous: (bin == 4)? 1:0
+    }
+  })
+}).then((response) => response.json())
+        .then((responseJSON) => {
+            console.log(responseJSON);
+            this.setState({
+                name : responseJSON.name,
+                list: responseJSON.list,
+            });
+            console.log(this.state.list);
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+console.log('POST');
+  this.setState({
+    general: 0,
+    compostable: 0,
+    recycle:0,
+    hazardous:0,
+  })
+  }
+
+
 static navigationOptions = ({navigation }) =>{ 
    strings.setLanguage(navigation.state.params.lang)
 }
@@ -67,7 +116,6 @@ static navigationOptions = ({navigation }) =>{
      colorButton1: '#15e498',
     colorButton2: '#253f3b', 
       but1: image[0],
-    but2: image[1],
    });
  }
 _onTH(){
@@ -76,7 +124,6 @@ _onTH(){
     colorButton1: '#253f3b',
     colorButton2: '#15e498',  
    but1: image[0],
-    but2: image[1],
   });
 }
   render() {
@@ -115,7 +162,14 @@ _onTH(){
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => Alert.alert(
+           strings.alert,
+             strings.lightbulbs ,
+            [
+              {text: strings.no, onPress: () => console.log('Cancel Pressed!')},
+              {text: strings.yes, onPress: () => this._handleApi('lightbulbs',4)},
+            ]
+          )}>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
   
@@ -128,9 +182,7 @@ _onTH(){
                 {/* start statRight bar */}
               <View style={styles.statTopR}>
                 <View style={styles.buttonFour}>
-                      <TouchableOpacity>
-                  <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
-                 </TouchableOpacity>
+                      
 
     
                  </View>

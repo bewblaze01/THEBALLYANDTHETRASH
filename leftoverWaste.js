@@ -47,15 +47,12 @@ export default class leftoverWaste extends Component {
     colorButton2: '#253f3b',
     but1: image[0],
     but2: image[1],
-<<<<<<< HEAD
     but3: image[2],
     
-=======
     general: 0,
     compostable: 0,
     recycle:0,
     hazardous:0,
->>>>>>> origin/master
   };
     }else{
         this.state={
@@ -63,14 +60,11 @@ export default class leftoverWaste extends Component {
     colorButton2: '#15e498',
        but1: image[0],
     but2: image[1],
-<<<<<<< HEAD
     but3: image[2],
-=======
     general: 0,
     compostable: 0,
     recycle:0,
     hazardous:0,
->>>>>>> origin/master
       }
     }
     

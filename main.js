@@ -52,7 +52,7 @@ const strings = new LocalizedStrings({
    binStat:"สถิติ ขยะ",
    graph:"กราฟ",
    stat:"สถิติ",
-   item:"โคเคน",
+   item:"โค็ก",
    how: "นำไปรีไซเคิลได้อย่างไร",
    you:"ของคุณ",
     other:"ของคนอื่น",

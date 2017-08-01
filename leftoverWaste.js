@@ -74,8 +74,8 @@ _onTH(){
   this.setState({
     colorButton1: '#253f3b',
     colorButton2: '#15e498',  
-      but1: imageThai[0],
-    but2: imageThai[1],
+      but1: image[0],
+    but2: image[1],
   });
 }
   render() {
@@ -132,7 +132,6 @@ _onTH(){
                 {/* end statRight bar */}
           </View>
           {/* End Button */}
-
           <View style={styles.footerContainer}>
             <TouchableOpacity style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}} onPress={()=>this.props.navigation.navigate('IdTrash',{lang:strings.getLanguage()}) }>
              <Text style={{color:'#29897c',fontWeight:'bold',fontSize:20}}>{strings.back}</Text>

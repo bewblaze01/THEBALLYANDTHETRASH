@@ -15,6 +15,7 @@ import {
   TextInput,
   Image,
   AsyncStorage,
+  ScrollView
 } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
 import Modal from 'react-native-modal'
@@ -109,11 +110,22 @@ _onTH(){
 
 
             {/* Button */}
+            
           <View style={styles.statContainer}>
+              <ScrollView>
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
                   <TouchableOpacity>
+                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                 </TouchableOpacity>
+                 <TouchableOpacity>
+                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                 </TouchableOpacity>
+                 <TouchableOpacity>
+                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                 </TouchableOpacity>
+                 <TouchableOpacity>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                 </View>
@@ -127,10 +139,16 @@ _onTH(){
                       <TouchableOpacity>
                   <Image source={this.state.but2} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
+                 <TouchableOpacity>
+                  <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
+                 </TouchableOpacity>
+    
                  </View>
                 </View>
                 {/* end statRight bar */}
+                </ScrollView>
           </View>
+          
           {/* End Button */}
           <View style={styles.footerContainer}>
             <TouchableOpacity style={{backgroundColor:'#6eeedc',alignItems:'center',width:350,borderRadius:6, justifyContent: 'center',}} onPress={()=>this.props.navigation.navigate('IdTrash',{lang:strings.getLanguage()}) }>

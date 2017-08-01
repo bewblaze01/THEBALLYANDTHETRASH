@@ -32,14 +32,14 @@ import ModalGreen from './ModalGreen.js'
 import ModalRed from './ModalRed.js'
 import ModalYellow from './ModalYellow.js'
 import ModalAll from './ModalAll.js'
-
+import ImageSlider from 'react-native-image-slider';
 const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
  en:{
    binStat:"BIN STATISTICS",
    graph:"graph",
-   item:"COKE CAN",
+   item:"Trash",
    how:"How to Recycle",
     stat:"Statistics",
     you:"By You",
@@ -52,7 +52,7 @@ const strings = new LocalizedStrings({
    binStat:"สถิติ ขยะ",
    graph:"กราฟ",
    stat:"สถิติ",
-   item:"โค็ก",
+   item:"ขยะ",
    how: "นำไปรีไซเคิลได้อย่างไร",
    you:"ของคุณ",
     other:"ของคนอื่น",
@@ -318,8 +318,18 @@ _onRed(){
             {/* start statLeft bar */}
           <View style={styles.statContainer}>
             <View style={styles.statTopL}>
-              <View style={styles.statFirst}>
-              <Image source={require('./pic/Cokecan.png')} style={{width:50,resizeMode:'contain', }}/>
+               <View style={styles.statFirst}> 
+                  <ImageSlider  images={[
+        require('./pic/Cokecan.png'),
+        require('./pic/batteries.jpg'),
+        require('./pic/cans.png'),
+        require('./pic/noodlecup.jpg'),
+         require('./pic/papercups.jpg'),
+        require('./pic/pic_bottle.jpg'),
+         require('./pic/pic_metal.jpg'),
+          require('./pic/packaging.jpg'),
+    ]} />  
+                {/* <Image source={require('./pic/Cokecan.png')} style={{width:50,height:90,resizeMode:'contain'}}/>   */}
           </View>
           <View style={styles.statSecond}>
              <Text style={{fontWeight:'bold',color:'black'}}> {strings.item} </Text>

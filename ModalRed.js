@@ -19,11 +19,10 @@ class ModalRed extends Component {
         .then((responseJSON) => {
             console.log(responseJSON);
             this.setState({
-                wasteStat : responseJSON.data.waste_statistics,
-                general: Number.parseInt(responseJSON.data.bin_statistics.general, 10),
-                compostable:Number.parseInt(responseJSON.data.bin_statistics.compostable,10),
-                recycle:Number.parseInt(responseJSON.data.bin_statistics.recycle,10),
-                hazardous:Number.parseInt(responseJSON.data.bin_statistics.hazardous,10),
+                  lightbulbs: Number.parseInt(responseJSON.data.waste_statistics.lightbulbs, 10),
+                chemicals:Number.parseInt(responseJSON.data.waste_statistics.chemicals,10),
+                drugs:Number.parseInt(responseJSON.data.waste_statistics.drugs,10),
+                batteries:Number.parseInt(responseJSON.data.waste_statistics.batteries,10),
             });   
         })
         .catch((error) => {
@@ -34,11 +33,11 @@ class ModalRed extends Component {
     super(props);
     this.state = { 
       modalVisible: false,
-    wasteStat : null,
-    general : null,
-    compostable : null,
-    recycle: null,
-    hazardous: null,
+    lightbulbs : null,
+    chemicals : null,
+    drugs : null,
+    batteries: null,
+
  };
   this._fetchAPI();
   }
@@ -50,10 +49,10 @@ class ModalRed extends Component {
 
    render() {
     let data = [
-	["Compostable", this.state.compostable],
-	["General", this.state.general],
-  ["Recycle", this.state.recycle],
-  ["Hazardous", this.state.hazardous],
+  ["Drugs", this.state.drugs],
+  ["Batteries", this.state.batteries],
+  	["Lightbulbs", this.state.lightbulbs],
+	["Chemicals", this.state.chemicals],
 ];
 
 

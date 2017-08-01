@@ -34,7 +34,7 @@ const image = [
   require('./pic/pic_meatwaste.jpg'),
 ]
 
-export default class leftoverWaste extends Component {
+export default class materialWaste extends Component {
 
     constructor(props) {
     super(props);

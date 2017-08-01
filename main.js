@@ -22,6 +22,12 @@ import Modal from 'react-native-modal'
 import Chart from 'react-native-chart';
 import identifyTrash from './identifyTrash'
 import leftoverWaste from './leftoverWaste'
+import containerWaste from './containerWaste'
+import electronicWaste from './electronicWaste'
+import liquidWaste from './liquidWaste'
+import metalWaste from './metalWaste'
+import materialWaste from './materialWaste'
+
 const ByYou_KEY = '@ByYou:data'
 
 const strings = new LocalizedStrings({
@@ -309,6 +315,11 @@ const TrashApp = StackNavigator({
   Main: {screen: main},
   IdTrash: {screen: identifyTrash},
   Trash1: {screen : leftoverWaste},
+  Trash2: {screen : containerWaste},
+  Trash3: {screen : electronicWaste},
+  Trash4: {screen : liquidWaste},
+  Trash5: {screen : metalWaste},
+  Trash6: {screen : materialWaste},
 },{ headerMode: 'none' });
 const styles = StyleSheet.create({
 container: {

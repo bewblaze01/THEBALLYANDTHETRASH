@@ -211,8 +211,8 @@ _onTH(){
 					fillColor="#b1e7e0"
           dataPointFillColor="#2dbfac"
 				 />
-           <TouchableOpacity  onPress={this._showModal} style={{flex:1,alignItems: 'flex-end',  position: "absolute",backgroundColor:'#1fbba6',marginTop:6,marginRight:6,padding:6,borderRadius:6,left: 320}}>
-             <Text style={{color:'#ffffff'}}>I</Text>
+           <TouchableOpacity  onPress={this._showModal} style={{flex:1,alignItems: 'flex-end',  position: "absolute",marginTop:6,marginRight:6,borderRadius:6,left: 300}}>
+              <Image source={require('./pic/info.png')} style={{width:35,resizeMode:'contain', }}/>
             </TouchableOpacity>
          
           </View>
@@ -222,19 +222,29 @@ _onTH(){
              {/* Start binselect bar */}
           <View style={styles.binContainer}>
            <View style={styles.select} >
-                <Button color='#15e498' title=" 1 " /> 
+                <TouchableOpacity  >
+              <Image source={require('./pic/all_click.png')} style={{width:35,resizeMode:'contain', }}/>
+            </TouchableOpacity>
               </View>
               <View style={styles.select} >
-                <Button color='#253f3b' title=" 2 " /> 
+                  <TouchableOpacity  >
+              <Image source={require('./pic/blue.png')} style={{width:35,resizeMode:'contain', }}/>
+            </TouchableOpacity>
               </View>
               <View style={styles.select} >
-                <Button color='#253f3b' title=" 3 " /> 
+                <TouchableOpacity  >
+              <Image source={require('./pic/green.png')} style={{width:35,resizeMode:'contain', }}/>
+            </TouchableOpacity>
               </View>
               <View style={styles.select} >
-                <Button color='#253f3b' title=" 4 " /> 
+                  <TouchableOpacity  >
+              <Image source={require('./pic/red.png')} style={{width:35,resizeMode:'contain', }}/>
+            </TouchableOpacity>
               </View>
               <View style={styles.select} >
-                <Button color='#253f3b' title=" 5 " /> 
+                 <TouchableOpacity  >
+              <Image source={require('./pic/yellow.png')} style={{width:35,resizeMode:'contain', }}/>
+            </TouchableOpacity>
               </View>
           </View>
            {/* end binselect bar */}

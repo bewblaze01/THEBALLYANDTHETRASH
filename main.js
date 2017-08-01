@@ -153,12 +153,22 @@ _onTH(){
 }
   render() {
    const { navigate } = this.props.navigation;
-    let data = [
-	["com", this.state.compostable],
-	["ge", this.state.general],
-  ["re", this.state.recycle],
-  ["ha", this.state.hazardous],
+   let data = []
+   if(strings.getLanguage()=='en'){
+     data = [
+	["Compostable", this.state.compostable],
+	["General", this.state.general],
+  ["Recycle", this.state.recycle],
+  ["Hazardous", this.state.hazardous],
 ];
+   }else{
+      data = [
+       	["ขยะย่อยสลาย", this.state.compostable],
+	["ขยะทั่วไป", this.state.general],
+  ["ขยะรีไซเคิล", this.state.recycle],
+  ["ขยะอันตราย", this.state.hazardous],
+     ]
+   }
     return (
       <View style={styles.container}>
 

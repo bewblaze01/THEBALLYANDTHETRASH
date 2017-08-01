@@ -128,7 +128,8 @@ class main extends Component {
     green: greenButton[0],
     yellow: yellowButton[0],
     red: redButton[0],
-    blue: blueButton[0],          
+    blue: blueButton[0],
+   modal: <ModalBlue/>,           
   };
   this._fetchAPI();
   }
@@ -186,6 +187,7 @@ _onAll(){
     yellow: yellowButton[0],
     red: redButton[0],
     blue: blueButton[0],  
+    modal: <ModalBlue/>  
   })
 }
 _onBlue(){
@@ -194,7 +196,8 @@ _onBlue(){
     green: greenButton[0],
     yellow: yellowButton[0],
     red: redButton[0],
-    blue: blueButton[1],  
+    blue: blueButton[1],
+    modal: <ModalBlue/>  
   })
 }
 _onGreen(){
@@ -203,7 +206,8 @@ _onGreen(){
     green: greenButton[1],
     yellow: yellowButton[0],
     red: redButton[0],
-    blue: blueButton[0],  
+    blue: blueButton[0], 
+    modal: <ModalGreen/>,  
   })
 }
 _onYellow(){
@@ -212,7 +216,8 @@ _onYellow(){
     green: greenButton[0],
     yellow: yellowButton[1],
     red: redButton[0],
-    blue: blueButton[0],  
+    blue: blueButton[0],
+    modal: <ModalYellow/>    
   })
 }
 _onRed(){
@@ -221,7 +226,8 @@ _onRed(){
     green: greenButton[0],
     yellow: yellowButton[0],
     red: redButton[1],
-    blue: blueButton[0],  
+    blue: blueButton[0],
+    modal: <ModalRed/>    
   })
 }
   render() {
@@ -272,7 +278,7 @@ _onRed(){
              <View style={styles.title1}>
           <Text style={styles.header1}> {strings.binStat} </Text>
           </View>
-           <ModalBlue/>
+           {this.state.modal}
 
             {/* End graph bar */}
 

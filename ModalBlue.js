@@ -18,12 +18,10 @@ class ModalBlue extends Component {
         .then((response) => response.json())
         .then((responseJSON) => {
             console.log(responseJSON);
-            this.setState({
-                wasteStat : responseJSON.data.waste_statistics,
-                general: Number.parseInt(responseJSON.data.bin_statistics.general, 10),
-                compostable:Number.parseInt(responseJSON.data.bin_statistics.compostable,10),
-                recycle:Number.parseInt(responseJSON.data.bin_statistics.recycle,10),
-                hazardous:Number.parseInt(responseJSON.data.bin_statistics.hazardous,10),
+            this.setState({          
+                cloath: Number.parseInt(responseJSON.data.waste_statistics.cloaths, 10),
+                paper:Number.parseInt(responseJSON.data.waste_statistics.paper,10),
+                foam:Number.parseInt(responseJSON.data.waste_statistics.foam,10),
             });   
         })
         .catch((error) => {
@@ -34,11 +32,9 @@ class ModalBlue extends Component {
     super(props);
     this.state = { 
       modalVisible: false,
-    wasteStat : null,
-    general : null,
-    compostable : null,
-    recycle: null,
-    hazardous: null,
+    cloath:null,
+    paper:null,
+    foam:null,
  };
   this._fetchAPI();
   }
@@ -50,10 +46,10 @@ class ModalBlue extends Component {
 
    render() {
     let data = [
-	["Compostable", this.state.compostable],
-	["General", this.state.general],
-  ["Recycle", this.state.recycle],
-  ["Hazardous", this.state.hazardous],
+	["Cloath", this.state.cloath],
+	["Paper", this.state.paper],
+  ["Foam", this.state.foam],
+  
 ];
 
 

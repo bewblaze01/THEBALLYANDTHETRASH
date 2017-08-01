@@ -89,12 +89,7 @@ export default class metalWaste extends Component {
   })
 }).then((response) => response.json())
         .then((responseJSON) => {
-            console.log(responseJSON);
-            this.setState({
-                name : responseJSON.name,
-                list: responseJSON.list,
-            });
-            console.log(this.state.list);
+            console.log(responseJSON);     
         })
         .catch((error) => {
             console.warn(error);

@@ -65,17 +65,6 @@ class main extends Component {
 
   _hideModal = () => this.setState({ isModalVisible: false })
     
-  componentDidMount(){
-    AsyncStorage.getItem(ByYou_KEY)
-    .then((value)=> {
-      this.setState({
-        byYou: (value == null)? 0:JSON.parse(value),
-      })
-      console.log('Value: '+value)
-      console.log('byYou: '+this.state.byYou)
-    })
-    .catch((error)=> console.log('AsyncStorage:'+error.message))
-  }
    _save(){
         AsyncStorage.setItem(ByYou_KEY,JSON.stringify(this.state.byYou))
         .then(()=>console.log('Your byYou '+this.state.byYou+' has been saved'))
@@ -115,12 +104,23 @@ _fetchAPI(){
               byOthers: this.state.general+this.state.compostable+this.state.recycle+this.state.hazardous-this.state.byYou,
               inTotal: this.state.general+this.state.compostable+this.state.recycle+this.state.hazardous,
             });
-            console.log(this.state.list);
+            
         })
         .catch((error) => {
             console.warn(error);
         });
 }
+      componentDidMount(){
+    AsyncStorage.getItem(ByYou_KEY)
+    .then((value)=> {
+      this.setState({
+        byYou: (value == null)? 0:JSON.parse(value),
+      })
+      console.log('Value: '+value)
+      console.log('byYou: '+this.state.byYou)
+    })
+    .catch((error)=> console.log('AsyncStorage:'+error.message))
+  }
  _onEN(){
    strings.setLanguage('en');
    this.setState({

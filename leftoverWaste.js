@@ -37,6 +37,7 @@ const image = [
 
 export default class leftoverWaste extends Component {
 
+ 
     constructor(props) {
     super(props);
     if(strings.getLanguage()=='en'){
@@ -45,18 +46,66 @@ export default class leftoverWaste extends Component {
     colorButton2: '#253f3b',
     but1: image[0],
     but2: image[1],
+    general: 0,
+    compostable: 0,
+    recycle:0,
+    hazardous:0,
   };
     }else{
         this.state={
         colorButton1: '#253f3b',
     colorButton2: '#15e498',
-      
        but1: image[0],
     but2: image[1],
+    general: 0,
+    compostable: 0,
+    recycle:0,
+    hazardous:0,
       }
     }
     
 }
+   
+   _handleApi(name,bin){  
+    fetch('http://smartbin.devfunction.com/api/', {
+  method: 'post',
+  body: JSON.stringify({
+    team_id: 7,
+    secret: 'fs4VcN',
+    waste_statistics: [
+      {
+        category: name,
+        selected: 1
+      }
+    ],
+    bin_statistics: {
+      general: (bin == 1)? 1:0,
+      compostable: (bin == 2)? 1:0,
+      recycle: (bin == 3)? 1:0,
+      hazardous: (bin == 4)? 1:0
+    }
+  })
+}).then((response) => response.json())
+        .then((responseJSON) => {
+            console.log(responseJSON);
+            this.setState({
+                name : responseJSON.name,
+                list: responseJSON.list,
+            });
+            console.log(this.state.list);
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+console.log('POST');
+  this.setState({
+    general: 0,
+    compostable: 0,
+    recycle:0,
+    hazardous:0,
+  })
+  }
+
 static navigationOptions = ({navigation }) =>{ 
    strings.setLanguage(navigation.state.params.lang)
 }
@@ -116,7 +165,7 @@ _onTH(){
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
-                  <TouchableOpacity>
+                  <TouchableOpacity  onPress={()=>this._handleApi('food',2)}>
                   <Image source={this.state.but1} style={{width:210,height:135,resizeMode: 'cover', }}/>
                  </TouchableOpacity>
                  <TouchableOpacity>

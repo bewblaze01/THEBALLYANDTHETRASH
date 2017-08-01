@@ -110,6 +110,7 @@ _onTH(){
 
             {/* Button */}
           <View style={styles.statContainer}>
+              <ScrollView>
               {/* start statLeft bar */}
               <View style={styles.statTopL}>
                 <View style={styles.buttonOne}>
@@ -130,6 +131,7 @@ _onTH(){
                  </View>
                 </View>
                 {/* end statRight bar */}
+                </ScrollView>
           </View>
           {/* End Button */}
 

@@ -199,6 +199,7 @@ _onTH(){
           <Text style={styles.header1}> {strings.binStat} </Text>
           </View>
            <View style={styles.graphContainer}>
+
              <Chart
 					style={styles.chart}
 					data={data}
@@ -210,6 +211,10 @@ _onTH(){
 					fillColor="#b1e7e0"
           dataPointFillColor="#2dbfac"
 				 />
+           <TouchableOpacity  onPress={this._showModal} style={{flex:1,alignItems: 'flex-end',  position: "absolute",backgroundColor:'#1fbba6',marginTop:6,marginRight:6,padding:6,borderRadius:6,left: 320}}>
+             <Text style={{color:'#ffffff'}}>I</Text>
+            </TouchableOpacity>
+         
           </View>
 
             {/* End graph bar */}
@@ -253,9 +258,7 @@ _onTH(){
             <View style={styles.statThree}>
 
 
-            <TouchableOpacity  onPress={this._showModal} style={{backgroundColor:'#1fbba6',marginTop:6,marginRight:6,padding:6,borderRadius:6}}>
-             <Text style={{color:'#ffffff'}}>{strings.how}</Text>
-            </TouchableOpacity>
+            
             <Modal isVisible={this.state.isModalVisible}>
          
            

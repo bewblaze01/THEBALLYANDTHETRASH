@@ -151,7 +151,7 @@ _onTH(){
                  <View style={styles.buttonThree}>
                       <TouchableOpacity>
                   <Image source={this.state.but5} style={{width:210,height:135,resizeMode: 'cover', }}/>
-                 </TouchableOpacity>
+                 </TouchableOpacity>  
                 </View>
               </View>
                 {/* end statLeft bar */}

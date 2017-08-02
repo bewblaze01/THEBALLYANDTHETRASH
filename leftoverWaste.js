@@ -52,7 +52,24 @@ const image = [
 
 
 export default class leftoverWaste extends Component {
-
+ componentDidMount(){
+    AsyncStorage.getItem(ByYou_KEY)
+    .then((value)=> {
+      this.setState({
+        byYou: (value == null)? 0:JSON.parse(value),
+      })
+      console.log('Value: '+value)
+      console.log('byYou: '+this.state.byYou)
+    })
+    .catch((error)=> console.log('AsyncStorage:'+error.message))
+  }
+   _save(){
+        AsyncStorage.setItem(ByYou_KEY,JSON.stringify(this.state.byYou))
+        .then(()=>console.log('Your byYou '+this.state.byYou+' has been saved'))
+        .catch((error)=> console.log('AsyncStorage: '+error.message ))
+        .done();
+      }
+ 
  
     constructor(props) {
     super(props);
@@ -63,7 +80,7 @@ export default class leftoverWaste extends Component {
     but1: image[0],
     but2: image[1],
     but3: image[2],
-    
+    byYou: 0,
     general: 0,
     compostable: 0,
     recycle:0,
@@ -76,6 +93,7 @@ export default class leftoverWaste extends Component {
        but1: image[0],
     but2: image[1],
     but3: image[2],
+    byYou: 0,
     general: 0,
     compostable: 0,
     recycle:0,
@@ -86,6 +104,9 @@ export default class leftoverWaste extends Component {
 }
    
    _handleApi(name,bin){  
+     this.setState({
+              byYou : this.state.byYou + 1 
+            });
     fetch('http://smartbin.devfunction.com/api/', {
   method: 'post',
   body: JSON.stringify({
@@ -107,15 +128,11 @@ export default class leftoverWaste extends Component {
 }).then((response) => response.json())
         .then((responseJSON) => {
             console.log(responseJSON);
-            this.setState({
-                name : responseJSON.name,
-                list: responseJSON.list,
-            });
-            console.log(this.state.list);
         })
         .catch((error) => {
             console.warn(error);
         });
+ this._save();         
 console.log('POST');
   this.setState({
     general: 0,

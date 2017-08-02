@@ -55,7 +55,24 @@ const image = [
   
 
 export default class liquidWaste extends Component {
-
+ componentDidMount(){
+    AsyncStorage.getItem(ByYou_KEY)
+    .then((value)=> {
+      this.setState({
+        byYou: (value == null)? 0:JSON.parse(value),
+      })
+      console.log('Value: '+value)
+      console.log('byYou: '+this.state.byYou)
+    })
+    .catch((error)=> console.log('AsyncStorage:'+error.message))
+  }
+   _save(){
+        AsyncStorage.setItem(ByYou_KEY,JSON.stringify(this.state.byYou))
+        .then(()=>console.log('Your byYou '+this.state.byYou+' has been saved'))
+        .catch((error)=> console.log('AsyncStorage: '+error.message ))
+        .done();
+      }
+ 
     constructor(props) {
     super(props);
     if(strings.getLanguage()=='en'){
@@ -66,6 +83,7 @@ export default class liquidWaste extends Component {
     but2: image[1],
     but3: image[2],
     but4: image[3],
+    byYou: 0,
   };
     }else{
         this.state={
@@ -75,12 +93,16 @@ export default class liquidWaste extends Component {
     but2: image[1],
     but3: image[2],
     but4: image[3],
+    byYou: 0,
       }
     }
     
 }
 
  _handleApi(name,bin){  
+   this.setState({
+              byYou : this.state.byYou + 1 
+            });
     fetch('http://smartbin.devfunction.com/api/', {
   method: 'post',
   body: JSON.stringify({
@@ -106,6 +128,7 @@ export default class liquidWaste extends Component {
         .catch((error) => {
             console.warn(error);
         });
+  this._save();
 console.log('POST');
   this.setState({
     general: 0,

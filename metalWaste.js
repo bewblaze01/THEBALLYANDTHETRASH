@@ -47,7 +47,24 @@ const image = [
 ]
 
 export default class metalWaste extends Component {
-
+ componentDidMount(){
+    AsyncStorage.getItem(ByYou_KEY)
+    .then((value)=> {
+      this.setState({
+        byYou: (value == null)? 0:JSON.parse(value),
+      })
+      console.log('Value: '+value)
+      console.log('byYou: '+this.state.byYou)
+    })
+    .catch((error)=> console.log('AsyncStorage:'+error.message))
+  }
+   _save(){
+        AsyncStorage.setItem(ByYou_KEY,JSON.stringify(this.state.byYou))
+        .then(()=>console.log('Your byYou '+this.state.byYou+' has been saved'))
+        .catch((error)=> console.log('AsyncStorage: '+error.message ))
+        .done();
+      }
+ 
     constructor(props) {
     super(props);
     if(strings.getLanguage()=='en'){
@@ -55,20 +72,23 @@ export default class metalWaste extends Component {
     colorButton1: '#15e498',
     colorButton2: '#253f3b',
     but1: image[0],
-    but2: image[1],
+    byYou:0,
   };
     }else{
         this.state={
         colorButton1: '#253f3b',
     colorButton2: '#15e498',
-      
        but1: image[0],
+       byYou:0,
       }
     }
     
 }
 
  _handleApi(name,bin){  
+   this.setState({
+              byYou : this.state.byYou + 1 
+            });
     fetch('http://smartbin.devfunction.com/api/', {
   method: 'post',
   body: JSON.stringify({
@@ -94,6 +114,7 @@ export default class metalWaste extends Component {
         .catch((error) => {
             console.warn(error);
         });
+  this._save();
 console.log('POST');
   this.setState({
     general: 0,
